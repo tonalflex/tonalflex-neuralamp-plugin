@@ -44,7 +44,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout NeuralAmpProcessor::createPa
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
 
     // path on device: /home/mind/NAM
-    juce::File namDir("../NAM");
+    juce::File namDir("../../NAM");
     auto modelNames = getSortedNamModelNames(namDir, modelIndexToPath);
 
     layout.add(std::make_unique<juce::AudioParameterFloat>("inputLevel", "Input Level", -20.0f, 20.0f, 0.0f));
