@@ -1,3 +1,6 @@
-[submodule "neuralamp/NeuralAmpModelerCore"]
-	path = neuralamp/NeuralAmpModelerCore
-	url = https://github.com/Disce-et-facere/NeuralAmpModelerCore.git
+[submodule "NeuralAmpModelerCore"]
+	path = plugin/NeuralAmpModelerCore
+	url = https://github.com/tonalflex/NeuralAmpModelerCore.git
+[submodule "plugin/NeuralAmpModelerCore"]
+	path = plugin/NeuralAmpModelerCore
+	url = https://github.com/tonalflex/NeuralAmpModelerCore.git
