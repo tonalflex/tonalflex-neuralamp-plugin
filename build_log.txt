@@ -1,0 +1,920 @@
+[  3%] Built target gtest
+[  6%] Built target gmock
+[  9%] Built target gmock_main
+[ 12%] Built target gtest_main
+[ 25%] Built target NAM
+[ 26%] Generating juce_binarydata_WebAssets/JuceLibraryCode/BinaryData1.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData2.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData3.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData4.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData5.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData.h
+[ 26%] Generating juce_binarydata_WebAssets/JuceLibraryCode/BinaryData1.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData2.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData3.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData4.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData5.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData.h
+[ 36%] Built target WebAssets
+[ 38%] Building CXX object plugin/CMakeFiles/neuralamp.dir/src/processor.cpp.o
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:168,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Dense:1,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:10,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:8,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:1:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Meta.h:214:60: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+  214 | template<typename T, int N> struct array_size<const T (&)[N]> {
+      |                                                            ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Meta.h:217:54: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+  217 | template<typename T, int N> struct array_size<T (&)[N]> {
+      |                                                      ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:173:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Memory.h: In function ‘void* Eigen::internal::handmade_aligned_malloc(std::size_t, std::size_t)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Memory.h:157:19: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  157 |   if (original == 0) return 0;
+      |                   ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Memory.h:157:29: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  157 |   if (original == 0) return 0;
+      |                             ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Memory.h: In function ‘void Eigen::internal::queryCacheSizes_intel_direct(int&, int&, int&)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Memory.h:1051:32: warning: conversion to ‘unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+ 1051 |       int ways        = (abcd[1] & 0xFFC00000) >> 22; // B[31:22]
+      |                          ~~~~~~^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Memory.h:1051:48: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+ 1051 |       int ways        = (abcd[1] & 0xFFC00000) >> 22; // B[31:22]
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:179:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/MathFunctions.h: In function ‘int Eigen::numext::log2(int)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/MathFunctions.h:1376:18: warning: conversion to ‘unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+ 1376 |   unsigned int v(x);
+      |                  ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:180:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h: In function ‘Packet Eigen::internal::pload_partial(const typename unpacket_traits<T>::type*, Eigen::Index, Eigen::Index)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h:630:35: warning: conversion to ‘long unsigned int’ from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  630 |   EIGEN_ALIGN_MAX Scalar elements[packet_size] = { Scalar(0) };
+      |                                   ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h: In function ‘Packet Eigen::internal::ploadu_partial(const typename unpacket_traits<T>::type*, Eigen::Index)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h:649:35: warning: conversion to ‘long unsigned int’ from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  649 |   EIGEN_ALIGN_MAX Scalar elements[packet_size] = { Scalar(0) };
+      |                                   ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h: In function ‘void Eigen::internal::pstore_partial(Scalar*, const Packet&, Eigen::Index, Eigen::Index)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h:757:35: warning: conversion to ‘long unsigned int’ from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  757 |   EIGEN_ALIGN_MAX Scalar elements[packet_size];
+      |                                   ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h: In function ‘void Eigen::internal::pstoreu_partial(Scalar*, const Packet&, Eigen::Index)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h:773:35: warning: conversion to ‘long unsigned int’ from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  773 |   EIGEN_ALIGN_MAX Scalar elements[packet_size];
+      |                                   ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h: In function ‘Packet Eigen::internal::pgather_partial(const Scalar*, Eigen::Index, Eigen::Index)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h:795:35: warning: conversion to ‘long unsigned int’ from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  795 |   EIGEN_ALIGN_MAX Scalar elements[packet_size] = { Scalar(0) };
+      |                                   ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h: In function ‘void Eigen::internal::pscatter_partial(Scalar*, const Packet&, Eigen::Index, Eigen::Index)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h:808:35: warning: conversion to ‘long unsigned int’ from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  808 |   EIGEN_ALIGN_MAX Scalar elements[packet_size];
+      |                                   ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h: At global scope:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/GenericPacketMath.h:1172:18: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+ 1172 |   Packet packet[N];
+      |                  ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:217:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h: In function ‘Packet Eigen::internal::pset1frombits(BitsType) [with Packet = __vector(4) float; BitsType = unsigned int]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:263:126: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  263 | template<> EIGEN_STRONG_INLINE Packet4f pset1frombits<Packet4f>(unsigned int from) { return _mm_castsi128_ps(pset1<Packet4i>(from)); }
+      |                                                                                                                              ^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h: In function ‘Packet Eigen::internal::pset1frombits(BitsType) [with Packet = __vector(2) double; BitsType = long unsigned int]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:264:122: warning: conversion to ‘long long int’ from ‘uint64_t’ {aka ‘long unsigned int’} may change the sign of the result [-Wsign-conversion]
+  264 | template<> EIGEN_STRONG_INLINE Packet2d pset1frombits<Packet2d>(uint64_t from) { return _mm_castsi128_pd(_mm_set1_epi64x(from)); }
+      |                                                                                                                          ^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h: In function ‘Packet Eigen::internal::paddsub(const Packet&, const Packet&) [with Packet = __vector(4) float]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:310:57: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  310 |   const Packet4f mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x0,0x80000000,0x0));
+      |                                                         ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:310:72: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  310 |   const Packet4f mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x0,0x80000000,0x0));
+      |                                                                        ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h: In function ‘Packet Eigen::internal::paddsub(const Packet&, const Packet&) [with Packet = __vector(2) double]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:321:61: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  321 |   const Packet2d mask = _mm_castsi128_pd(_mm_setr_epi32(0x0,0x80000000,0x0,0x0));
+      |                                                             ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h: In function ‘Packet Eigen::internal::pnegate(const Packet&) [with Packet = __vector(4) float]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:328:57: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  328 |   const Packet4f mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x80000000,0x80000000,0x80000000));
+      |                                                         ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:328:68: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  328 |   const Packet4f mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x80000000,0x80000000,0x80000000));
+      |                                                                    ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:328:79: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  328 |   const Packet4f mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x80000000,0x80000000,0x80000000));
+      |                                                                               ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:328:90: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  328 |   const Packet4f mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x80000000,0x80000000,0x80000000));
+      |                                                                                          ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h: In function ‘Packet Eigen::internal::pnegate(const Packet&) [with Packet = __vector(2) double]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:333:61: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  333 |   const Packet2d mask = _mm_castsi128_pd(_mm_setr_epi32(0x0,0x80000000,0x0,0x80000000));
+      |                                                             ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:333:76: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  333 |   const Packet2d mask = _mm_castsi128_pd(_mm_setr_epi32(0x0,0x80000000,0x0,0x80000000));
+      |                                                                            ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h: In function ‘Packet Eigen::internal::pabs(const Packet&) [with Packet = __vector(2) double]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:638:57: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘4294967295’ to ‘-1’ [-Wsign-conversion]
+  638 |   const Packet2d mask = _mm_castsi128_pd(_mm_setr_epi32(0xFFFFFFFF,0x7FFFFFFF,0xFFFFFFFF,0x7FFFFFFF));
+      |                                                         ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/PacketMath.h:638:79: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘4294967295’ to ‘-1’ [-Wsign-conversion]
+  638 |   const Packet2d mask = _mm_castsi128_pd(_mm_setr_epi32(0xFFFFFFFF,0x7FFFFFFF,0xFFFFFFFF,0x7FFFFFFF));
+      |                                                                               ^~~~~~~~~~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:220:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h: In function ‘Packet Eigen::internal::pnegate(const Packet&) [with Packet = Packet2cf]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:73:55: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+   73 |   const __m128 mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x80000000,0x80000000,0x80000000));
+      |                                                       ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:73:66: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+   73 |   const __m128 mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x80000000,0x80000000,0x80000000));
+      |                                                                  ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:73:77: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+   73 |   const __m128 mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x80000000,0x80000000,0x80000000));
+      |                                                                             ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:73:88: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+   73 |   const __m128 mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x80000000,0x80000000,0x80000000));
+      |                                                                                        ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h: In function ‘Packet Eigen::internal::pconj(const Packet&) [with Packet = Packet2cf]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:78:66: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+   78 |   const __m128 mask = _mm_castsi128_ps(_mm_setr_epi32(0x00000000,0x80000000,0x00000000,0x80000000));
+      |                                                                  ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:78:88: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+   78 |   const __m128 mask = _mm_castsi128_ps(_mm_setr_epi32(0x00000000,0x80000000,0x00000000,0x80000000));
+      |                                                                                        ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h: In function ‘Packet Eigen::internal::pmul(const Packet&, const Packet&) [with Packet = Packet2cf]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:92:55: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+   92 |   const __m128 mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x00000000,0x80000000,0x00000000));
+      |                                                       ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:92:77: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+   92 |   const __m128 mask = _mm_castsi128_ps(_mm_setr_epi32(0x80000000,0x00000000,0x80000000,0x00000000));
+      |                                                                             ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h: In function ‘Packet Eigen::internal::pconj(const Packet&) [with Packet = Packet1cd]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:221:55: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  221 |   const __m128d mask = _mm_castsi128_pd(_mm_set_epi32(0x80000000,0x0,0x0,0x0));
+      |                                                       ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h: In function ‘Packet Eigen::internal::pmul(const Packet&, const Packet&) [with Packet = Packet1cd]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/SSE/Complex.h:232:63: warning: signed conversion from ‘unsigned int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Wsign-conversion]
+  232 |   const __m128d mask = _mm_castsi128_pd(_mm_set_epi32(0x0,0x0,0x80000000,0x0));
+      |                                                               ^~~~~~~~~~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:262:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h: In function ‘Packet Eigen::internal::psincos_float(const Packet&)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h:650:56: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+  650 |     EIGEN_ALIGN_TO_BOUNDARY(sizeof(Packet)) float vals[PacketSize];
+      |                                                        ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h:651:57: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+  651 |     EIGEN_ALIGN_TO_BOUNDARY(sizeof(Packet)) float x_cpy[PacketSize];
+      |                                                         ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h:652:75: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+  652 |     EIGEN_ALIGN_TO_BOUNDARY(sizeof(Packet)) Eigen::numext::int32_t y_int2[PacketSize];
+      |                                                                           ^~~~~~~~~~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:282:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/ReshapedHelper.h: In function ‘constexpr int Eigen::internal::get_compiletime_reshape_order(int, int)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/ReshapedHelper.h:45:31: warning: conversion to ‘unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+   45 |   return order == AutoOrder ? flags & RowMajorBit : order;
+      |                               ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/ReshapedHelper.h:45:53: warning: conversion to ‘unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+   45 |   return order == AutoOrder ? flags & RowMajorBit : order;
+      |                                                     ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/ReshapedHelper.h:45:29: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+   45 |   return order == AutoOrder ? flags & RowMajorBit : order;
+      |          ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:285:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/IO.h: In constructor ‘Eigen::IOFormat::IOFormat(int, int, const std::string&, const std::string&, const std::string&, const std::string&, const std::string&, const std::string&, char)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/IO.h:68:30: warning: conversion to ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
+   68 |     while (i>=0 && matSuffix[i]!='\n')
+      |                              ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:303:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h: At global scope:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:46:15: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+   46 |   T array[Size];
+      |               ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:68:42: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+   68 |   EIGEN_ALIGN_TO_BOUNDARY(8) T array[Size];
+      |                                          ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:83:43: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+   83 |   EIGEN_ALIGN_TO_BOUNDARY(16) T array[Size];
+      |                                           ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:98:43: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+   98 |   EIGEN_ALIGN_TO_BOUNDARY(32) T array[Size];
+      |                                           ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:113:43: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+  113 |   EIGEN_ALIGN_TO_BOUNDARY(64) T array[Size];
+      |                                           ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:345:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/TriangularMatrix.h: In function ‘void Eigen::internal::call_triangular_assignment_loop(DstXprType&, const SrcXprType&, const Functor&)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/TriangularMatrix.h:827:110: warning: conversion to ‘unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+  827 |   triangular_assignment_loop<Kernel, Mode, unroll ? int(DstXprType::SizeAtCompileTime) : Dynamic, SetOpposite>::run(kernel);
+      |                                                                                                              ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:346:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/SelfAdjointView.h: At global scope:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/SelfAdjointView.h:250:32: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  250 |     const LLT<PlainObject, UpLo> llt() const;
+      |                                ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/SelfAdjointView.h:251:33: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  251 |     const LDLT<PlainObject, UpLo> ldlt() const;
+      |                                 ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:353:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h: In member function ‘Eigen::TriangularView<MatrixType, Mode_>& Eigen::TriangularViewImpl<MatrixType_, Mode_, Eigen::Dense>::_assignProduct(const ProductType&, const Scalar&, bool)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:312:116: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  312 |   general_product_to_triangular_selector<MatrixType, ProductType, UpLo, internal::traits<ProductType>::InnerSize==1>::run(derived().nestedExpression().const_cast_derived(), prod, alpha, beta);
+      |                                                                                                                    ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:356:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/products/SelfadjointProduct.h: In member function ‘Eigen::SelfAdjointView<MatrixType, UpLo>& Eigen::SelfAdjointView<MatrixType, Mode>::rankUpdate(const Eigen::MatrixBase<OtherDerived>&, const Scalar&)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/products/SelfadjointProduct.h:128:56: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  128 |   selfadjoint_product_selector<MatrixType,DerivedU,UpLo>::run(_expression().const_cast_derived(), u.derived(), alpha);
+      |                                                        ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Cholesky:33,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Dense:3:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Cholesky/LLT.h: At global scope:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Cholesky/LLT.h:547:79: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  547 | inline const LLT<typename SelfAdjointView<MatrixType, UpLo>::PlainObject, UpLo>
+      |                                                                               ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Cholesky/LLT.h: In member function ‘const Eigen::LLT<typename MatrixType_::PlainObject, UpLo> Eigen::SelfAdjointView<MatrixType, Mode>::llt() const’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Cholesky/LLT.h:550:30: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  550 |   return LLT<PlainObject,UpLo>(m_matrix);
+      |                              ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Cholesky:34:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Cholesky/LDLT.h: At global scope:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Cholesky/LDLT.h:666:80: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  666 | inline const LDLT<typename SelfAdjointView<MatrixType, UpLo>::PlainObject, UpLo>
+      |                                                                                ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Cholesky/LDLT.h: In member function ‘const Eigen::LDLT<typename MatrixType_::PlainObject, UpLo> Eigen::SelfAdjointView<MatrixType, Mode>::ldlt() const’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Cholesky/LDLT.h:669:31: warning: conversion to ‘int’ from ‘unsigned int’ may change the sign of the result [-Wsign-conversion]
+  669 |   return LDLT<PlainObject,UpLo>(m_matrix);
+      |                               ^
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:12:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h: In member function ‘virtual void nam::activations::Activation::apply(float*, long int)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:61:29: warning: unused parameter ‘data’ [-Wunused-parameter]
+   61 |   virtual void apply(float* data, long size) {}
+      |                      ~~~~~~~^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:61:40: warning: unused parameter ‘size’ [-Wunused-parameter]
+   61 |   virtual void apply(float* data, long size) {}
+      |                                   ~~~~~^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h: At global scope:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:57:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1>, -1, -1, true>)’ was hidden [-Woverloaded-virtual=]
+   57 |   virtual void apply(Eigen::Block<Eigen::MatrixXf, -1, -1, true> block)
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:75:8: note:   by ‘virtual void nam::activations::ActivationTanh::apply(float*, long int)’
+   75 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:56:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1> >)’ was hidden [-Woverloaded-virtual=]
+   56 |   virtual void apply(Eigen::Block<Eigen::MatrixXf> block) { apply(block.data(), block.rows() * block.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:75:8: note:   by ‘virtual void nam::activations::ActivationTanh::apply(float*, long int)’
+   75 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:55:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::MatrixXf&)’ was hidden [-Woverloaded-virtual=]
+   55 |   virtual void apply(Eigen::MatrixXf& matrix) { apply(matrix.data(), matrix.rows() * matrix.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:75:8: note:   by ‘virtual void nam::activations::ActivationTanh::apply(float*, long int)’
+   75 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:57:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1>, -1, -1, true>)’ was hidden [-Woverloaded-virtual=]
+   57 |   virtual void apply(Eigen::Block<Eigen::MatrixXf, -1, -1, true> block)
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:87:8: note:   by ‘virtual void nam::activations::ActivationHardTanh::apply(float*, long int)’
+   87 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:56:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1> >)’ was hidden [-Woverloaded-virtual=]
+   56 |   virtual void apply(Eigen::Block<Eigen::MatrixXf> block) { apply(block.data(), block.rows() * block.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:87:8: note:   by ‘virtual void nam::activations::ActivationHardTanh::apply(float*, long int)’
+   87 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:55:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::MatrixXf&)’ was hidden [-Woverloaded-virtual=]
+   55 |   virtual void apply(Eigen::MatrixXf& matrix) { apply(matrix.data(), matrix.rows() * matrix.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:87:8: note:   by ‘virtual void nam::activations::ActivationHardTanh::apply(float*, long int)’
+   87 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:57:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1>, -1, -1, true>)’ was hidden [-Woverloaded-virtual=]
+   57 |   virtual void apply(Eigen::Block<Eigen::MatrixXf, -1, -1, true> block)
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:99:8: note:   by ‘virtual void nam::activations::ActivationFastTanh::apply(float*, long int)’
+   99 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:56:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1> >)’ was hidden [-Woverloaded-virtual=]
+   56 |   virtual void apply(Eigen::Block<Eigen::MatrixXf> block) { apply(block.data(), block.rows() * block.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:99:8: note:   by ‘virtual void nam::activations::ActivationFastTanh::apply(float*, long int)’
+   99 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:55:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::MatrixXf&)’ was hidden [-Woverloaded-virtual=]
+   55 |   virtual void apply(Eigen::MatrixXf& matrix) { apply(matrix.data(), matrix.rows() * matrix.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:99:8: note:   by ‘virtual void nam::activations::ActivationFastTanh::apply(float*, long int)’
+   99 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:57:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1>, -1, -1, true>)’ was hidden [-Woverloaded-virtual=]
+   57 |   virtual void apply(Eigen::Block<Eigen::MatrixXf, -1, -1, true> block)
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:111:8: note:   by ‘virtual void nam::activations::ActivationReLU::apply(float*, long int)’
+  111 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:56:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1> >)’ was hidden [-Woverloaded-virtual=]
+   56 |   virtual void apply(Eigen::Block<Eigen::MatrixXf> block) { apply(block.data(), block.rows() * block.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:111:8: note:   by ‘virtual void nam::activations::ActivationReLU::apply(float*, long int)’
+  111 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:55:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::MatrixXf&)’ was hidden [-Woverloaded-virtual=]
+   55 |   virtual void apply(Eigen::MatrixXf& matrix) { apply(matrix.data(), matrix.rows() * matrix.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:111:8: note:   by ‘virtual void nam::activations::ActivationReLU::apply(float*, long int)’
+  111 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:57:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1>, -1, -1, true>)’ was hidden [-Woverloaded-virtual=]
+   57 |   virtual void apply(Eigen::Block<Eigen::MatrixXf, -1, -1, true> block)
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:123:8: note:   by ‘virtual void nam::activations::ActivationLeakyReLU::apply(float*, long int)’
+  123 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:56:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1> >)’ was hidden [-Woverloaded-virtual=]
+   56 |   virtual void apply(Eigen::Block<Eigen::MatrixXf> block) { apply(block.data(), block.rows() * block.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:123:8: note:   by ‘virtual void nam::activations::ActivationLeakyReLU::apply(float*, long int)’
+  123 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:55:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::MatrixXf&)’ was hidden [-Woverloaded-virtual=]
+   55 |   virtual void apply(Eigen::MatrixXf& matrix) { apply(matrix.data(), matrix.rows() * matrix.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:123:8: note:   by ‘virtual void nam::activations::ActivationLeakyReLU::apply(float*, long int)’
+  123 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:57:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1>, -1, -1, true>)’ was hidden [-Woverloaded-virtual=]
+   57 |   virtual void apply(Eigen::Block<Eigen::MatrixXf, -1, -1, true> block)
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:135:8: note:   by ‘virtual void nam::activations::ActivationSigmoid::apply(float*, long int)’
+  135 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:56:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::Block<Eigen::Matrix<float, -1, -1> >)’ was hidden [-Woverloaded-virtual=]
+   56 |   virtual void apply(Eigen::Block<Eigen::MatrixXf> block) { apply(block.data(), block.rows() * block.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:135:8: note:   by ‘virtual void nam::activations::ActivationSigmoid::apply(float*, long int)’
+  135 |   void apply(float* data, long size) override
+      |        ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:55:16: warning: ‘virtual void nam::activations::Activation::apply(Eigen::MatrixXf&)’ was hidden [-Woverloaded-virtual=]
+   55 |   virtual void apply(Eigen::MatrixXf& matrix) { apply(matrix.data(), matrix.rows() * matrix.cols()); }
+      |                ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/activations.h:135:8: note:   by ‘virtual void nam::activations::ActivationSigmoid::apply(float*, long int)’
+  135 |   void apply(float* data, long size) override
+      |        ^~~~~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:13:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In static member function ‘static CharType nlohmann::detail::binary_writer<BasicJsonType, CharType>::to_char_type(uint8_t)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:12595:28: warning: ‘template<class _Tp> struct std::is_pod’ is deprecated: use 'is_standard_layout && is_trivial' instead [-Wdeprecated-declarations]
+12595 |         static_assert(std::is_pod<CharType>::value, "CharType must be POD");
+      |                            ^~~~~~
+In file included from /usr/include/c++/14/bits/stl_pair.h:60,
+                 from /usr/include/c++/14/bits/stl_algobase.h:64,
+                 from /usr/include/c++/14/algorithm:60,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_core/system/juce_StandardHeader.h:62,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_core/juce_core.h:215,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_graphics/juce_graphics.h:67,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_gui_basics/juce_gui_basics.h:68,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/juce_audio_processors.h:66,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:2:
+/usr/include/c++/14/type_traits:890:5: note: declared here
+  890 |     is_pod
+      |     ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h: In member function ‘long int nam::Conv1D::get_kernel_size() const’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:185:59: warning: conversion to ‘long int’ from ‘std::vector<Eigen::Matrix<float, -1, -1> >::size_type’ {aka ‘long unsigned int’} may change the sign of the result [-Wsign-conversion]
+  185 |   long get_kernel_size() const { return this->_weight.size(); };
+      |                                         ~~~~~~~~~~~~~~~~~~^~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:9:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/get_dsp.h: At global scope:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/get_dsp.h:8:22: warning: redundant redeclaration of ‘std::unique_ptr<nam::DSP> nam::get_dsp(std::filesystem::__cxx11::path)’ in same scope [-Wredundant-decls]
+    8 | std::unique_ptr<DSP> get_dsp(const std::filesystem::path config_filename);
+      |                      ^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:255:22: note: previous declaration of ‘std::unique_ptr<nam::DSP> nam::get_dsp(std::filesystem::__cxx11::path)’
+  255 | std::unique_ptr<DSP> get_dsp(const std::filesystem::path model_file);
+      |                      ^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/get_dsp.h:11:22: warning: redundant redeclaration of ‘std::unique_ptr<nam::DSP> nam::get_dsp(dspData&)’ in same scope [-Wredundant-decls]
+   11 | std::unique_ptr<DSP> get_dsp(dspData& conf);
+      |                      ^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:259:22: note: previous declaration of ‘std::unique_ptr<nam::DSP> nam::get_dsp(dspData&)’
+  259 | std::unique_ptr<DSP> get_dsp(dspData& conf);
+      |                      ^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/get_dsp.h:14:22: warning: redundant redeclaration of ‘std::unique_ptr<nam::DSP> nam::get_dsp(std::filesystem::__cxx11::path, dspData&)’ in same scope [-Wredundant-decls]
+   14 | std::unique_ptr<DSP> get_dsp(const std::filesystem::path config_filename, dspData& returnedConfig);
+      |                      ^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:257:22: note: previous declaration of ‘std::unique_ptr<nam::DSP> nam::get_dsp(std::filesystem::__cxx11::path, dspData&)’
+  257 | std::unique_ptr<DSP> get_dsp(const std::filesystem::path model_file, dspData& returnedConfig);
+      |                      ^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:72:26: error: ‘bool NeuralAmpProcessor::isModelLoaded’ conflicts with a previous declaration
+   72 |     bool isModelLoaded = false;
+      |                          ^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:55:10: note: previous declaration ‘bool NeuralAmpProcessor::isModelLoaded() const’
+   55 |     bool isModelLoaded() const { return modelLoaded; }
+      |          ^~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp: In member function ‘void NeuralAmpProcessor::setCurrentModelIndex(int)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:167:9: error: invalid use of member function ‘bool NeuralAmpProcessor::isModelLoaded() const’ (did you forget the ‘()’ ?)
+  167 |         isModelLoaded = true;
+      |         ^~~~~~~~~~~~~
+      |                      ()
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp: In member function ‘virtual void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:298:39: warning: conversion to ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
+  298 |             std::vector<double> input(numSamples);
+      |                                       ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:299:40: warning: conversion to ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
+  299 |             std::vector<double> output(numSamples);
+      |                                        ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:305:27: warning: conversion to ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
+  305 |                     input[i] = static_cast<double>(channelData[i]);
+      |                           ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:313:64: warning: conversion to ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
+  313 |                     channelData[i] = static_cast<float>(output[i]);
+      |                                                                ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:239:91: warning: unused parameter ‘midi’ [-Wunused-parameter]
+  239 | void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midi)
+      |                                                                         ~~~~~~~~~~~~~~~~~~^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp: In member function ‘virtual void NeuralAmpProcessor::processBlock(juce::AudioBuffer<double>&, juce::MidiBuffer&)’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:372:92: warning: unused parameter ‘midi’ [-Wunused-parameter]
+  372 | void NeuralAmpProcessor::processBlock(juce::AudioBuffer<double>& buffer, juce::MidiBuffer& midi)
+      |                                                                          ~~~~~~~~~~~~~~~~~~^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h: In instantiation of ‘Eigen::DenseStorage<T, -1, -1, Cols_, Options_>::~DenseStorage() [with T = float; int Cols_ = 1; int Options_ = 0]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:95:7:   required from here
+   95 | class PlainObjectBase : public internal::dense_xpr_base<Derived>::type
+      |       ^~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:657:123: warning: conversion to ‘std::size_t’ {aka ‘long unsigned int’} from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  657 |     EIGEN_DEVICE_FUNC ~DenseStorage() { internal::conditional_aligned_delete_auto<T,(Options_&DontAlign)==0>(m_data, Cols_*m_rows); }
+      |                                                                                                                      ~~~~~^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h: In instantiation of ‘Eigen::DenseStorage<T, -1, -1, -1, Options_>::~DenseStorage() [with T = float; int Options_ = 0]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:95:7:   required from here
+   95 | class PlainObjectBase : public internal::dense_xpr_base<Derived>::type
+      |       ^~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:504:124: warning: conversion to ‘std::size_t’ {aka ‘long unsigned int’} from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  504 |     EIGEN_DEVICE_FUNC ~DenseStorage() { internal::conditional_aligned_delete_auto<T,(Options_&DontAlign)==0>(m_data, m_rows*m_cols); }
+      |                                                                                                                      ~~~~~~^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘void nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::json_value::destroy(nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::value_t) [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::value_t = nlohmann::detail::value_t]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:16505:24:   required from ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::~basic_json() [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer]’
+16505 |         m_value.destroy(m_type);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15591:13: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+15591 |             switch (t)
+      |             ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15591:13: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15591:13: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15591:13: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15591:13: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15591:13: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘uninitialized’ not handled in switch [-Wswitch-enum]
+ 8835 |                 switch (last_token)
+      |                 ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘end_array’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘end_object’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘name_separator’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘value_separator’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘end_of_input’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘literal_or_value’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8767:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8767 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘uninitialized’ not handled in switch [-Wswitch-enum]
+ 8835 |                 switch (last_token)
+      |                 ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘end_array’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘end_object’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘name_separator’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘value_separator’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘end_of_input’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8835:17: warning: enumeration value ‘literal_or_value’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h: In instantiation of ‘constexpr Eigen::DenseStorage<T, -1, -1, Cols_, Options_>::DenseStorage() [with T = float; int Cols_ = 1; int Options_ = 0]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:462:45:   required from ‘Eigen::PlainObjectBase<Derived>::PlainObjectBase() [with Derived = Eigen::Matrix<float, -1, 1>]’
+  462 |     EIGEN_STRONG_INLINE PlainObjectBase() : m_storage()
+      |                                             ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/Matrix.h:261:21:   required from ‘Eigen::Matrix<Scalar_, Rows_, Cols_, Options_, MaxRows_, MaxCols_>::Matrix() [with Scalar_ = float; int Rows_ = -1; int Cols_ = 1; int Options_ = 0; int MaxRows_ = -1; int MaxCols_ = 1]’
+  261 |     Matrix() : Base()
+      |                     ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:173:12:   required from here
+  173 |   Conv1D() { this->_dilation = 1; };
+      |            ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:618:56: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  618 |    EIGEN_DEVICE_FUNC constexpr DenseStorage() : m_data(0), m_rows(0) {}
+      |                                                        ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h: In instantiation of ‘constexpr Eigen::DenseStorage<T, -1, -1, -1, Options_>::DenseStorage() [with T = float; int Options_ = 0]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:462:45:   required from ‘Eigen::PlainObjectBase<Derived>::PlainObjectBase() [with Derived = Eigen::Matrix<float, -1, -1>]’
+  462 |     EIGEN_STRONG_INLINE PlainObjectBase() : m_storage()
+      |                                             ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/Matrix.h:261:21:   required from ‘Eigen::Matrix<Scalar_, Rows_, Cols_, Options_, MaxRows_, MaxCols_>::Matrix() [with Scalar_ = float; int Rows_ = -1; int Cols_ = -1; int Options_ = 0; int MaxRows_ = -1; int MaxCols_ = -1]’
+  261 |     Matrix() : Base()
+      |                     ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/wavenet.h:32:17:   required from here
+   32 |   , _gated(gated) {};
+      |                 ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:459:56: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  459 |    EIGEN_DEVICE_FUNC constexpr DenseStorage() : m_data(0), m_rows(0), m_cols(0) {}
+      |                                                        ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::json_value::json_value(nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::value_t) [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::value_t = nlohmann::detail::value_t]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15753:22:   required from ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::basic_json(value_t) [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; value_t = nlohmann::detail::value_t]’
+15753 |         : m_type(v), m_value(v)
+      |                      ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15777:35:   required from ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::basic_json(std::nullptr_t) [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; std::nullptr_t = std::nullptr_t]’
+15777 |         : basic_json(value_t::null)
+      |                                   ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20881:20:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20881 |         basic_json result;
+      |                    ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:15444:13: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+15444 |             switch (t)
+      |             ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Meta.h: In instantiation of ‘struct Eigen::internal::has_ReturnType<Eigen::ScalarBinaryOpTraits<float, float, Eigen::internal::assign_op<float, float> > >’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/AssignEvaluator.h:889:3:   required from ‘constexpr void Eigen::internal::call_assignment_no_alias(Dst&, const Src&, const Func&) [with Dst = Eigen::Matrix<float, -1, 1>; Src = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Func = assign_op<float, float>]’
+  835 |   EIGEN_STATIC_ASSERT((Eigen::internal::has_ReturnType<ScalarBinaryOpTraits<LHS, RHS,BINOP> >::value), \
+      |                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:770:41:   required from ‘Derived& Eigen::PlainObjectBase<Derived>::_set_noalias(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Derived = Eigen::Matrix<float, -1, 1>]’
+  770 |       internal::call_assignment_no_alias(this->derived(), other.derived(), internal::assign_op<Scalar,typename OtherDerived::Scalar>());
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:569:19:   required from ‘Eigen::PlainObjectBase<Derived>::PlainObjectBase(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Derived = Eigen::Matrix<float, -1, 1>]’
+  569 |       _set_noalias(other);
+      |       ~~~~~~~~~~~~^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/Matrix.h:414:29:   required from ‘Eigen::Matrix<Scalar_, Rows_, Cols_, Options_, MaxRows_, MaxCols_>::Matrix(const Eigen::EigenBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Scalar_ = float; int Rows_ = -1; int Cols_ = 1; int Options_ = 0; int MaxRows_ = -1; int MaxCols_ = 1]’
+  414 |       : Base(other.derived())
+      |                             ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/lstm.h:26:62:   required from here
+   26 |   Eigen::VectorXf get_hidden_state() const { return this->_xh(Eigen::placeholders::lastN(this->_get_hidden_size())); };
+      |                                                     ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Meta.h:310:97: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  310 |   template <typename C> static meta_yes testFunctor(C const *, typename C::ReturnType const * = 0);
+      |                                                                                                 ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::size_type nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::max_size() const [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; size_type = long unsigned int]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4707:34:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::start_object(std::size_t) [with BasicJsonType = nlohmann::basic_json<>; std::size_t = long unsigned int]’
+ 4707 |         if (ref_stack.back() and JSON_HEDLEY_UNLIKELY(len != std::size_t(-1) and len > ref_stack.back()->max_size()))
+      |                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8839:29:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8839 |                         if (JSON_HEDLEY_UNLIKELY(not sax->start_object(std::size_t(-1))))
+      |                                                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19267:9: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+19267 |         switch (m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19267:9: warning: enumeration value ‘string’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19267:9: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19267:9: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19267:9: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19267:9: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19267:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::basic_json(const nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>&) [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4737:31:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4737 |             *ref_stack.back() = discarded;
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:16355:9: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+16355 |         switch (m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:16355:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘nlohmann::detail::iter_impl<BasicJsonType>& nlohmann::detail::iter_impl<BasicJsonType>::operator++() [with BasicJsonType = nlohmann::basic_json<>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4748:86:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4748 |             for (auto it = ref_stack.back()->begin(); it != ref_stack.back()->end(); ++it)
+      |                                                                                      ^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9632:9: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+ 9632 |         switch (m_object->m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9632:9: warning: enumeration value ‘string’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9632:9: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9632:9: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9632:9: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9632:9: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9632:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘nlohmann::detail::iter_impl<BasicJsonType>::pointer nlohmann::detail::iter_impl<BasicJsonType>::operator->() const [with BasicJsonType = nlohmann::basic_json<>; pointer = nlohmann::basic_json<>*]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4750:21:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4750 |                 if (it->is_discarded())
+      |                     ^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9587:9: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+ 9587 |         switch (m_object->m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9587:9: warning: enumeration value ‘string’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9587:9: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9587:9: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9587:9: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9587:9: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9587:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘IteratorType nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::erase(IteratorType) [with IteratorType = nlohmann::detail::iter_impl<nlohmann::basic_json<> >; typename std::enable_if<(std::is_same<InputIT, nlohmann::detail::iter_impl<nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> > >::value || std::is_same<InputIT, nlohmann::detail::iter_impl<const nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> > >::value), int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4752:44:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4752 |                     ref_stack.back()->erase(it);
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:18250:9: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+18250 |         switch (m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:18250:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h: In instantiation of ‘void Eigen::DenseStorage<T, -1, -1, Cols_, Options_>::resize(Eigen::Index, Eigen::Index, Eigen::Index) [with T = float; int Cols_ = 1; int Options_ = 0; Eigen::Index = long int]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:278:25:   required from ‘constexpr void Eigen::PlainObjectBase<Derived>::resize(Eigen::Index, Eigen::Index) [with Derived = Eigen::Matrix<float, -1, 1>; Eigen::Index = long int]’
+  278 |         m_storage.resize(rows*cols, rows, cols);
+      |         ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:348:15:   required from ‘void Eigen::PlainObjectBase<Derived>::resizeLike(const Eigen::EigenBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Derived = Eigen::Matrix<float, -1, 1>]’
+  348 |         resize(1, othersize);
+      |         ~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:568:17:   required from ‘Eigen::PlainObjectBase<Derived>::PlainObjectBase(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Derived = Eigen::Matrix<float, -1, 1>]’
+  568 |       resizeLike(other);
+      |       ~~~~~~~~~~^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/Matrix.h:414:29:   required from ‘Eigen::Matrix<Scalar_, Rows_, Cols_, Options_, MaxRows_, MaxCols_>::Matrix(const Eigen::EigenBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Scalar_ = float; int Rows_ = -1; int Cols_ = 1; int Options_ = 0; int MaxRows_ = -1; int MaxCols_ = 1]’
+  414 |       : Base(other.derived())
+      |                             ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/lstm.h:26:62:   required from here
+   26 |   Eigen::VectorXf get_hidden_state() const { return this->_xh(Eigen::placeholders::lastN(this->_get_hidden_size())); };
+      |                                                     ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:673:91: warning: conversion to ‘std::size_t’ {aka ‘long unsigned int’} from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  673 |         internal::conditional_aligned_delete_auto<T,(Options_&DontAlign)==0>(m_data, Cols_*m_rows);
+      |                                                                                      ~~~~~^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:675:86: warning: conversion to ‘std::size_t’ {aka ‘long unsigned int’} from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
+  675 |           m_data = internal::conditional_aligned_new_auto<T,(Options_&DontAlign)==0>(size);
+      |                                                                                      ^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:677:20: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  677 |           m_data = 0;
+      |                    ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::size_type nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::size() const [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; size_type = long unsigned int]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19284:24:   required from ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::size_type nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::max_size() const [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; size_type = long unsigned int]’
+19284 |                 return size();
+      |                        ^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4707:34:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::start_object(std::size_t) [with BasicJsonType = nlohmann::basic_json<>; std::size_t = long unsigned int]’
+ 4707 |         if (ref_stack.back() and JSON_HEDLEY_UNLIKELY(len != std::size_t(-1) and len > ref_stack.back()->max_size()))
+      |                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8839:29:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8839 |                         if (JSON_HEDLEY_UNLIKELY(not sax->start_object(std::size_t(-1))))
+      |                                                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19197:9: warning: enumeration value ‘string’ not handled in switch [-Wswitch-enum]
+19197 |         switch (m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19197:9: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19197:9: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19197:9: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19197:9: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:19197:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘nlohmann::detail::iter_impl<BasicJsonType>::iter_impl(pointer) [with BasicJsonType = nlohmann::basic_json<>; pointer = nlohmann::basic_json<>*]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:18676:18:   required from ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::iterator nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::begin() [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; iterator = nlohmann::detail::iter_impl<nlohmann::basic_json<> >]’
+18676 |         iterator result(this);
+      |                  ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4748:51:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4748 |             for (auto it = ref_stack.back()->begin(); it != ref_stack.back()->end(); ++it)
+      |                            ~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9396:9: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+ 9396 |         switch (m_object->m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9396:9: warning: enumeration value ‘string’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9396:9: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9396:9: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9396:9: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9396:9: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9396:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘void nlohmann::detail::iter_impl<BasicJsonType>::set_begin() [with BasicJsonType = nlohmann::basic_json<>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:18677:25:   required from ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::iterator nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::begin() [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; iterator = nlohmann::detail::iter_impl<nlohmann::basic_json<> >]’
+18677 |         result.set_begin();
+      |         ~~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4748:51:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4748 |             for (auto it = ref_stack.back()->begin(); it != ref_stack.back()->end(); ++it)
+      |                            ~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9482:9: warning: enumeration value ‘string’ not handled in switch [-Wswitch-enum]
+ 9482 |         switch (m_object->m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9482:9: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9482:9: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9482:9: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9482:9: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9482:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘void nlohmann::detail::iter_impl<BasicJsonType>::set_end() [with BasicJsonType = nlohmann::basic_json<>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:18748:23:   required from ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::iterator nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::end() [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; iterator = nlohmann::detail::iter_impl<nlohmann::basic_json<> >]’
+18748 |         result.set_end();
+      |         ~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4748:82:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4748 |             for (auto it = ref_stack.back()->begin(); it != ref_stack.back()->end(); ++it)
+      |                                                             ~~~~~~~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9519:9: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+ 9519 |         switch (m_object->m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9519:9: warning: enumeration value ‘string’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9519:9: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9519:9: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9519:9: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9519:9: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9519:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘bool nlohmann::detail::iter_impl<BasicJsonType>::operator==(const nlohmann::detail::iter_impl<BasicJsonType>&) const [with BasicJsonType = nlohmann::basic_json<>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9732:20:   required from ‘bool nlohmann::detail::iter_impl<BasicJsonType>::operator!=(const nlohmann::detail::iter_impl<BasicJsonType>&) const [with BasicJsonType = nlohmann::basic_json<>]’
+ 9732 |         return not operator==(other);
+      |                    ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4748:58:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4748 |             for (auto it = ref_stack.back()->begin(); it != ref_stack.back()->end(); ++it)
+      |                                                       ~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9713:9: warning: enumeration value ‘null’ not handled in switch [-Wswitch-enum]
+ 9713 |         switch (m_object->m_type)
+      |         ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9713:9: warning: enumeration value ‘string’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9713:9: warning: enumeration value ‘boolean’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9713:9: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9713:9: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9713:9: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:9713:9: warning: enumeration value ‘discarded’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘const char* nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::type_name() const [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:18289:17:   required from ‘IteratorType nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::erase(IteratorType) [with IteratorType = nlohmann::detail::iter_impl<nlohmann::basic_json<> >; typename std::enable_if<(std::is_same<InputIT, nlohmann::detail::iter_impl<nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> > >::value || std::is_same<InputIT, nlohmann::detail::iter_impl<const nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> > >::value), int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer]’
+18289 |                 JSON_THROW(type_error::create(307, "cannot use erase() with " + std::string(type_name())));
+      |                                                                                             ^~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:4752:44:   required from ‘bool nlohmann::detail::json_sax_dom_callback_parser<BasicJsonType>::end_object() [with BasicJsonType = nlohmann::basic_json<>]’
+ 4752 |                     ref_stack.back()->erase(it);
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8847:33:   required from ‘bool nlohmann::detail::parser<BasicJsonType>::sax_parse_internal(SAX*) [with SAX = nlohmann::detail::json_sax_dom_callback_parser<nlohmann::basic_json<> >; BasicJsonType = nlohmann::basic_json<>]’
+ 8847 |                             if (JSON_HEDLEY_UNLIKELY(not sax->end_object()))
+      |                                                          ~~~~~~~~~~~~~~~^~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:8738:31:   required from ‘void nlohmann::detail::parser<BasicJsonType>::parse(bool, BasicJsonType&) [with BasicJsonType = nlohmann::basic_json<>]’
+ 8738 |             sax_parse_internal(&sdp);
+      |             ~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20882:79:   required from ‘static nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer> nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::parse(IteratorType, IteratorType, parser_callback_t, bool) [with IteratorType = const char*; typename std::enable_if<std::is_base_of<std::random_access_iterator_tag, typename std::iterator_traits<_InputIterator>::iterator_category>::value, int>::type <anonymous> = 0; ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; parser_callback_t = std::function<bool(int, nlohmann::detail::parser<nlohmann::basic_json<> >::parse_event_t, nlohmann::basic_json<>&)>]’
+20882 |         parser(detail::input_adapter(first, last), cb, allow_exceptions).parse(true, result);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:22700:33:   required from here
+22700 |     return nlohmann::json::parse(s, s + n);
+      |            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20990:13: warning: enumeration value ‘number_integer’ not handled in switch [-Wswitch-enum]
+20990 |             switch (m_type)
+      |             ^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20990:13: warning: enumeration value ‘number_unsigned’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:20990:13: warning: enumeration value ‘number_float’ not handled in switch [-Wswitch-enum]
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Memory.h: In instantiation of ‘T* Eigen::internal::conditional_aligned_new_auto(std::size_t) [with T = float; bool Align = true; std::size_t = long unsigned int]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:675:85:   required from ‘void Eigen::DenseStorage<T, -1, -1, Cols_, Options_>::resize(Eigen::Index, Eigen::Index, Eigen::Index) [with T = float; int Cols_ = 1; int Options_ = 0; Eigen::Index = long int]’
+  675 |           m_data = internal::conditional_aligned_new_auto<T,(Options_&DontAlign)==0>(size);
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:278:25:   required from ‘constexpr void Eigen::PlainObjectBase<Derived>::resize(Eigen::Index, Eigen::Index) [with Derived = Eigen::Matrix<float, -1, 1>; Eigen::Index = long int]’
+  278 |         m_storage.resize(rows*cols, rows, cols);
+      |         ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:348:15:   required from ‘void Eigen::PlainObjectBase<Derived>::resizeLike(const Eigen::EigenBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Derived = Eigen::Matrix<float, -1, 1>]’
+  348 |         resize(1, othersize);
+      |         ~~~~~~^~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:568:17:   required from ‘Eigen::PlainObjectBase<Derived>::PlainObjectBase(const Eigen::DenseBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Derived = Eigen::Matrix<float, -1, 1>]’
+  568 |       resizeLike(other);
+      |       ~~~~~~~~~~^~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/Matrix.h:414:29:   required from ‘Eigen::Matrix<Scalar_, Rows_, Cols_, Options_, MaxRows_, MaxCols_>::Matrix(const Eigen::EigenBase<OtherDerived>&) [with OtherDerived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; Scalar_ = float; int Rows_ = -1; int Cols_ = 1; int Options_ = 0; int MaxRows_ = -1; int MaxCols_ = 1]’
+  414 |       : Base(other.derived())
+      |                             ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/lstm.h:26:62:   required from here
+   26 |   Eigen::VectorXf get_hidden_state() const { return this->_xh(Eigen::placeholders::lastN(this->_get_hidden_size())); };
+      |                                                     ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Memory.h:499:12: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  499 |     return 0; // short-cut. Also fixes Bug 884
+      |            ^
+In file included from /usr/include/c++/14/cassert:44,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Assert.h:32,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:169:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/MapBase.h: In instantiation of ‘Eigen::MapBase<Derived, 0>::MapBase(PointerType, Eigen::Index, Eigen::Index) [with Derived = Eigen::Block<const Eigen::Matrix<float, -1, 1>, -1, 1, false>; PointerType = const float*; Eigen::Index = long int]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/Block.h:392:62:   required from ‘Eigen::internal::BlockImpl_dense<XprType, BlockRows, BlockCols, InnerPanel, true>::BlockImpl_dense(XprType&, Eigen::Index, Eigen::Index, Eigen::Index, Eigen::Index) [with XprType = const Eigen::Matrix<float, -1, 1>; int BlockRows = -1; int BlockCols = 1; bool InnerPanel = false; Eigen::Index = long int]’
+  392 |         m_xpr(xpr), m_startRow(startRow), m_startCol(startCol)
+      |                                                              ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/Block.h:168:59:   required from ‘Eigen::BlockImpl<XprType, BlockRows, BlockCols, InnerPanel, Eigen::Dense>::BlockImpl(XprType&, Eigen::Index, Eigen::Index, Eigen::Index, Eigen::Index) [with XprType = const Eigen::Matrix<float, -1, 1>; int BlockRows = -1; int BlockCols = 1; bool InnerPanel = false; Eigen::Index = long int]’
+  168 |       : Impl(xpr, startRow, startCol, blockRows, blockCols) {}
+      |                                                           ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/Block.h:144:59:   required from ‘Eigen::Block<XprType, BlockRows, BlockCols, InnerPanel>::Block(XprType&, Eigen::Index, Eigen::Index, Eigen::Index, Eigen::Index) [with XprType = const Eigen::Matrix<float, -1, 1>; int BlockRows = -1; int BlockCols = 1; bool InnerPanel = false; Eigen::Index = long int]’
+  144 |       : Impl(xpr, startRow, startCol, blockRows, blockCols)
+      |                                                           ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/VectorBlock.h:81:61:   required from ‘Eigen::VectorBlock<MatrixType, Size>::VectorBlock(VectorType&, Eigen::Index, Eigen::Index) [with VectorType = const Eigen::Matrix<float, -1, 1>; int Size = -1; Eigen::Index = long int]’
+   81 |              IsColVector ? size  : 1, IsColVector ? 1 : size)
+      |                                                             ^
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/../plugins/IndexedViewMethods.h:161:12:   required from ‘static Eigen::DenseBase<Derived>::VectorIndexedViewSelector<Indices, false, true, false>::ConstReturnType Eigen::DenseBase<Derived>::VectorIndexedViewSelector<Indices, false, true, false>::run(const Derived&, const Indices&) [with Indices = Eigen::ArithmeticSequence<Eigen::symbolic::AddExpr<Eigen::symbolic::AddExpr<Eigen::symbolic::SymbolExpr<Eigen::internal::symbolic_last_tag>, Eigen::symbolic::ValueExpr<Eigen::internal::FixedInt<1> > >, Eigen::symbolic::ValueExpr<> >, long int, Eigen::internal::FixedInt<1> >; Derived = Eigen::Matrix<float, -1, 1>; ConstReturnType = Eigen::VectorBlock<const Eigen::Matrix<float, -1, 1>, -1>]’
+  161 |     return ConstReturnType(derived, internal::first(actualIndices), internal::index_list_size(actualIndices));
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/../plugins/IndexedViewMethods.h:292:49:   required from ‘Eigen::DenseBase<Derived>::ConstVectorIndexedViewType<Indices> Eigen::DenseBase<Derived>::operator()(const Indices&) const [with Indices = Eigen::ArithmeticSequence<Eigen::symbolic::AddExpr<Eigen::symbolic::AddExpr<Eigen::symbolic::SymbolExpr<Eigen::internal::symbolic_last_tag>, Eigen::symbolic::ValueExpr<Eigen::internal::FixedInt<1> > >, Eigen::symbolic::ValueExpr<> >, long int, Eigen::internal::FixedInt<1> >; typename std::enable_if<(! Eigen::internal::is_valid_index_type<Indices>::value), bool>::type <anonymous> = true; Derived = Eigen::Matrix<float, -1, 1>; ConstVectorIndexedViewType<Indices> = Eigen::VectorBlock<const Eigen::Matrix<float, -1, 1>, -1>]’
+  292 |   return VectorIndexedViewSelector<Indices>::run(derived(), indices);
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/lstm.h:26:62:   required from here
+   26 |   Eigen::VectorXf get_hidden_state() const { return this->_xh(Eigen::placeholders::lastN(this->_get_hidden_size())); };
+      |                                                     ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/MapBase.h:178:30: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  178 |       eigen_assert( (dataPtr == 0)
+      |                     ~~~~~~~~~^~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Macros.h:898:25: note: in expansion of macro ‘eigen_plain_assert’
+  898 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                         ^~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/MapBase.h:178:7: note: in expansion of macro ‘eigen_assert’
+  178 |       eigen_assert( (dataPtr == 0)
+      |       ^~~~~~~~~~~~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:322:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/MapBase.h:207:82: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
+  207 |     void checkSanity(std::enable_if_t<internal::traits<T>::Alignment==0,void*> = 0) const
+      |                                                                                  ^
+gmake[2]: *** [plugin/CMakeFiles/neuralamp.dir/build.make:76: plugin/CMakeFiles/neuralamp.dir/src/processor.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:350: plugin/CMakeFiles/neuralamp.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2
