@@ -1,6 +1,5 @@
 #include "processor.h"
 #include "editor.h"
-#include <algorithm>
 #include <cmath>
 
 // Static member initialization
@@ -48,7 +47,7 @@ juce::StringArray NeuralAmpProcessor::getSortedNamModelNames(
 
 void NeuralAmpProcessor::initModelNamesAndPaths() {
   if (!modelPathsInitialized) {
-    juce::File namDir("/Users/simonthorell/Code/tonalflex/tonalflex-neuralamp-plugin/NAM");
+    juce::File namDir("/home/rekz/Documents/NAM");
     modelNames = getSortedNamModelNames(namDir, modelPathsByIndex);
     modelPathsInitialized = true;
     DBG("Initialized with " << modelNames.size() << " model choices");
@@ -234,40 +233,39 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
     return;
   }
 
-  float inputGain =
-      juce::Decibels::decibelsToGain(parameters.getRawParameterValue("inputLevel")->load());
-  float outputGain =
-      juce::Decibels::decibelsToGain(parameters.getRawParameterValue("outputLevel")->load());
-  float bassGain = *parameters.getRawParameterValue("toneBass") / 5.0f;      // Scale 0-10 to 0-2
-  float midGain = *parameters.getRawParameterValue("toneMid") / 5.0f;        // Scale 0-10 to 0-2
+  // Get parameter values
+  float inputGain = juce::Decibels::decibelsToGain(parameters.getRawParameterValue("inputLevel")->load());
+  float outputGain = juce::Decibels::decibelsToGain(parameters.getRawParameterValue("outputLevel")->load());
+  float bassGain = *parameters.getRawParameterValue("toneBass") / 5.0f;  // Scale 0-10 to 0-2
+  float midGain = *parameters.getRawParameterValue("toneMid") / 5.0f;    // Scale 0-10 to 0-2
   float trebleGain = *parameters.getRawParameterValue("toneTreble") / 5.0f;  // Scale 0-10 to 0-2
   bool eqActive = *parameters.getRawParameterValue("eqActive") > 0.5f;
   bool noiseGateActive = *parameters.getRawParameterValue("noiseGateActive") > 0.5f;
   float noiseGateThreshold = *parameters.getRawParameterValue("noiseGateThreshold");
 
-  if (!std::isfinite(inputGain) || !std::isfinite(outputGain) || !std::isfinite(bassGain) ||
-      !std::isfinite(midGain) || !std::isfinite(trebleGain) || !std::isfinite(noiseGateThreshold)) {
-    DBG("Invalid parameter values detected; clearing buffer");
-    buffer.clear();
-    return;
-  }
+   // Apply input gain
+   for (int channel = 0; channel < numChannels; ++channel)
+   {
+       auto* channelData = buffer.getWritePointer(channel);
+       for (int i = 0; i < numSamples; ++i)
+       {
+           channelData[i] *= inputGain;
+       }
+   }
 
-  for (int channel = 0; channel < numChannels; ++channel) {
-    auto* channelData = buffer.getWritePointer(channel);
-    for (int i = 0; i < numSamples; ++i) {
-      channelData[i] *= inputGain;
-    }
-  }
-
-  if (noiseGateActive) {
-    for (int channel = 0; channel < numChannels; ++channel) {
-      auto* channelData = buffer.getWritePointer(channel);
-      for (int i = 0; i < numSamples; ++i) {
-        if (std::abs(channelData[i]) < juce::Decibels::decibelsToGain(noiseGateThreshold))
-          channelData[i] = 0.0f;
-      }
-    }
-  }
+   // Noise gate (simple threshold)
+   if (noiseGateActive)
+   {
+       for (int channel = 0; channel < numChannels; ++channel)
+       {
+           auto* channelData = buffer.getWritePointer(channel);
+           for (int i = 0; i < numSamples; ++i)
+           {
+               if (std::abs(channelData[i]) < juce::Decibels::decibelsToGain(noiseGateThreshold))
+                   channelData[i] = 0.0f;
+           }
+       }
+   }
 
   // auto localDsp = dsp.load();  // atomic load
   std::shared_ptr<nam::DSP> localDsp;
@@ -305,38 +303,32 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
     }
   }
 
-  if (eqActive) {
-    auto bassCoeffs =
-        juce::dsp::IIR::Coefficients<float>::makeLowShelf(getSampleRate(), 100.0f, 1.0f, bassGain);
-    auto midCoeffs = juce::dsp::IIR::Coefficients<float>::makePeakFilter(getSampleRate(), 1000.0f,
-                                                                         1.0f, midGain);
-    auto trebleCoeffs = juce::dsp::IIR::Coefficients<float>::makeHighShelf(getSampleRate(), 4000.0f,
-                                                                           1.0f, trebleGain);
+ // Apply EQ if active
+ if (eqActive)
+ {
+    // Create new coefficients and assign them to the filters
+    auto bassCoeffs = juce::dsp::IIR::Coefficients<float>::makeLowShelf(getSampleRate(), 100.0f, 1.0f, bassGain);
+    auto midCoeffs = juce::dsp::IIR::Coefficients<float>::makePeakFilter(getSampleRate(), 1000.0f, 1.0f, midGain);
+    auto trebleCoeffs = juce::dsp::IIR::Coefficients<float>::makeHighShelf(getSampleRate(), 4000.0f, 1.0f, trebleGain);
 
-    if (bassCoeffs && midCoeffs && trebleCoeffs) {
-      *bassFilter.state = *bassCoeffs;
-      *midFilter.state = *midCoeffs;
-      *trebleFilter.state = *trebleCoeffs;
+    *bassFilter.state = *bassCoeffs;
+    *midFilter.state = *midCoeffs;
+    *trebleFilter.state = *trebleCoeffs;
 
-      juce::dsp::AudioBlock<float> block(buffer);
-      juce::dsp::ProcessContextReplacing<float> context(block);
-      bassFilter.process(context);
-      midFilter.process(context);
-      trebleFilter.process(context);
-    } else {
-      DBG("Invalid EQ coefficients; skipping EQ");
-    }
+    juce::dsp::AudioBlock<float> block(buffer);
+    juce::dsp::ProcessContextReplacing<float> context(block);
+    bassFilter.process(context);
+    midFilter.process(context);
+    trebleFilter.process(context);
   }
 
-  for (int channel = 0; channel < numChannels; ++channel) {
+  // Apply output gain
+  for (int channel = 0; channel < numChannels; ++channel)
+  {
     auto* channelData = buffer.getWritePointer(channel);
-    for (int i = 0; i < numSamples; ++i) {
-      channelData[i] *= outputGain;
-      if (!std::isfinite(channelData[i])) {
-        DBG("Non-finite output after gain at sample " << i);
-        buffer.clear();
-        return;
-      }
+    for (int i = 0; i < numSamples; ++i)
+    {
+        channelData[i] *= outputGain;
     }
   }
 }
