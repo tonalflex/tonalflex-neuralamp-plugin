@@ -29,4 +29,4 @@ CPMAddPackage(
 
 enable_testing() # Allow running build tests
 
-add_subdirectory(neuralamp) # Add plugin project
+add_subdirectory(plugin) # Add plugin project

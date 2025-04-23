@@ -1,6 +1,3 @@
-[submodule "NeuralAmpModelerCore"]
-	path = plugin/NeuralAmpModelerCore
-	url = https://github.com/tonalflex/NeuralAmpModelerCore.git
 [submodule "plugin/NeuralAmpModelerCore"]
 	path = plugin/NeuralAmpModelerCore
 	url = https://github.com/tonalflex/NeuralAmpModelerCore.git
