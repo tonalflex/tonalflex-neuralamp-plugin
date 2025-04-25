@@ -3,15 +3,14 @@
 [  9%] Built target gmock_main
 [ 12%] Built target gtest_main
 [ 25%] Built target NAM
-[ 26%] Generating juce_binarydata_WebAssets/JuceLibraryCode/BinaryData1.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData2.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData3.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData4.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData5.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData.h
-[ 26%] Generating juce_binarydata_WebAssets/JuceLibraryCode/BinaryData1.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData2.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData3.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData4.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData5.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData.h
 [ 36%] Built target WebAssets
-[ 38%] Building CXX object plugin/CMakeFiles/neuralamp.dir/src/processor.cpp.o
+[ 38%] Building CXX object plugin/CMakeFiles/neuralamp.dir/src/editor.cpp.o
 In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:168,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Dense:1,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:10,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:8,
-                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:1:
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/editor.h:4,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/editor.cpp:1:
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Meta.h:214:60: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
   214 | template<typename T, int N> struct array_size<const T (&)[N]> {
       |                                                            ^
@@ -366,7 +365,7 @@ In file included from /usr/include/c++/14/bits/stl_pair.h:60,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_graphics/juce_graphics.h:67,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_gui_basics/juce_gui_basics.h:68,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/juce_audio_processors.h:66,
-                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:2:
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/editor.h:2:
 /usr/include/c++/14/type_traits:890:5: note: declared here
   890 |     is_pod
       |     ^~~~~~
@@ -394,37 +393,12 @@ In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plu
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:257:22: note: previous declaration of ‘std::unique_ptr<nam::DSP> nam::get_dsp(std::filesystem::__cxx11::path, dspData&)’
   257 | std::unique_ptr<DSP> get_dsp(const std::filesystem::path model_file, dspData& returnedConfig);
       |                      ^~~~~~~
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:72:26: error: ‘bool NeuralAmpProcessor::isModelLoaded’ conflicts with a previous declaration
-   72 |     bool isModelLoaded = false;
-      |                          ^~~~~
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:55:10: note: previous declaration ‘bool NeuralAmpProcessor::isModelLoaded() const’
-   55 |     bool isModelLoaded() const { return modelLoaded; }
-      |          ^~~~~~~~~~~~~
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp: In member function ‘void NeuralAmpProcessor::setCurrentModelIndex(int)’:
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:167:9: error: invalid use of member function ‘bool NeuralAmpProcessor::isModelLoaded() const’ (did you forget the ‘()’ ?)
-  167 |         isModelLoaded = true;
-      |         ^~~~~~~~~~~~~
-      |                      ()
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp: In member function ‘virtual void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&)’:
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:298:39: warning: conversion to ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
-  298 |             std::vector<double> input(numSamples);
-      |                                       ^~~~~~~~~~
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:299:40: warning: conversion to ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
-  299 |             std::vector<double> output(numSamples);
-      |                                        ^~~~~~~~~~
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:305:27: warning: conversion to ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
-  305 |                     input[i] = static_cast<double>(channelData[i]);
-      |                           ^
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:313:64: warning: conversion to ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} from ‘int’ may change the sign of the result [-Wsign-conversion]
-  313 |                     channelData[i] = static_cast<float>(output[i]);
-      |                                                                ^
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:239:91: warning: unused parameter ‘midi’ [-Wunused-parameter]
-  239 | void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midi)
-      |                                                                         ~~~~~~~~~~~~~~~~~~^~~~
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp: In member function ‘virtual void NeuralAmpProcessor::processBlock(juce::AudioBuffer<double>&, juce::MidiBuffer&)’:
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:372:92: warning: unused parameter ‘midi’ [-Wunused-parameter]
-  372 | void NeuralAmpProcessor::processBlock(juce::AudioBuffer<double>& buffer, juce::MidiBuffer& midi)
-      |                                                                          ~~~~~~~~~~~~~~~~~~^~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/editor.cpp:236:6: error: redefinition of ‘void NeuralAmpEditor::irSelectionChanged()’
+  236 | void NeuralAmpEditor::irSelectionChanged() {
+      |      ^~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/editor.cpp:231:6: note: ‘void NeuralAmpEditor::irSelectionChanged()’ previously defined here
+  231 | void NeuralAmpEditor::irSelectionChanged() {
+      |      ^~~~~~~~~~~~~~~
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h: In instantiation of ‘Eigen::DenseStorage<T, -1, -1, Cols_, Options_>::~DenseStorage() [with T = float; int Cols_ = 1; int Options_ = 0]’:
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:95:7:   required from here
    95 | class PlainObjectBase : public internal::dense_xpr_base<Derived>::type
@@ -915,6 +889,6 @@ In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plu
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/MapBase.h:207:82: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
   207 |     void checkSanity(std::enable_if_t<internal::traits<T>::Alignment==0,void*> = 0) const
       |                                                                                  ^
-gmake[2]: *** [plugin/CMakeFiles/neuralamp.dir/build.make:76: plugin/CMakeFiles/neuralamp.dir/src/processor.cpp.o] Error 1
+gmake[2]: *** [plugin/CMakeFiles/neuralamp.dir/build.make:90: plugin/CMakeFiles/neuralamp.dir/src/editor.cpp.o] Error 1
 gmake[1]: *** [CMakeFiles/Makefile2:350: plugin/CMakeFiles/neuralamp.dir/all] Error 2
 gmake: *** [Makefile:146: all] Error 2

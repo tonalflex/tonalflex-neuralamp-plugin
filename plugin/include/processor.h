@@ -42,35 +42,59 @@ public:
   void setStateInformation(const void* data, int sizeInBytes) override;
 
   juce::AudioProcessorValueTreeState& getParameters() { return parameters; }
-  void loadNamFromFile(const juce::String& filePath);
-  void addModel(const juce::String& filePath);
+  void loadNamFile(const juce::String& filePath);
+  void loadIrFile(const juce::File& irFile);
 
   const juce::StringArray& getModelNames() const;
+  const juce::StringArray& getIrNames() const;
   const std::vector<juce::String>& getModelPaths() const;
+  const std::vector<juce::String>& getIrPaths() const;
 
   int getCurrentModelIndex() const { return currentModelIndex; }
+  int getCurrentIrIndex() const { return currentIrIndex; }
   void setCurrentModelIndex(int index);
+  void setCurrentIrIndex(int index);
 
   bool isModelLoaded() const { return modelLoaded; }
+  bool isIrLoaded() const { return irLoaded; }
 
 private:
   juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
   static void initModelNamesAndPaths();
+  static void initIrNamesAndPaths();
   static juce::StringArray getSortedNamModelNames(const juce::File& namFolder,
                                                   std::vector<juce::String>& modelPaths);
-
+  static juce::StringArray getSortedIrNames(const juce::File& irFolder,
+                                            std::vector<juce::String>& irPaths);
   std::shared_ptr<nam::DSP> dsp;
   std::mutex dspMutex;
   std::atomic<bool> modelLoaded{false};
+  std::atomic<bool> irLoaded{false};
+  std::atomic<bool> normalizeIr{true};
 
   juce::AudioProcessorValueTreeState parameters;
+  juce::LinearSmoothedValue<float> normalizationGainSmoother;
+
+  juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>
+      dcBlockerLeft;
+  juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>
+      dcBlockerRight;
+
+  juce::dsp::Convolution irConvolverLeft;
+  juce::dsp::Convolution irConvolverRight;
+  bool irEnabled = true;
 
   static juce::StringArray modelNames;
+  static juce::StringArray irNames;
   static std::vector<juce::String> modelPathsByIndex;
+  static std::vector<juce::String> irPathsByIndex;
   static bool modelPathsInitialized;
+  static bool irPathsInitialized;
   int currentModelIndex = -1;  // -1 = "No Model"
+  int currentIrIndex = -1;     // -1 = "No Model"
   juce::CriticalSection modelLoadLock;
+  juce::CriticalSection irLoadLock;
 
   juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>
       bassFilter;
@@ -78,6 +102,11 @@ private:
       midFilter;
   juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>
       trebleFilter;
+
+  std::unique_ptr<juce::dsp::Oversampling<float>> oversampler;
+  juce::AudioBuffer<float> oversampleBuffer;
+  double modelSampleRate = 48000.0;  // Default, updated dynamically in prepareToPlay
+  bool bypassResampling = true;      // Default to bypass unless model requires specific rate
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NeuralAmpProcessor)
 };

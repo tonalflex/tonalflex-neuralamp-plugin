@@ -109,11 +109,11 @@ target_compile_definitions(${PROJECT_NAME}
 )
 
 # Treat all warnings as errors
-if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
-else()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
-endif()
+#if (MSVC)
+#    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+#else()
+#    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+#endif()
 
 # Visual Studio Only
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/..) 
