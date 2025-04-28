@@ -41,7 +41,10 @@ public:
   void getStateInformation(juce::MemoryBlock& destData) override;
   void setStateInformation(const void* data, int sizeInBytes) override;
 
+  juce::AudioProcessorValueTreeState parameters;
+
   juce::AudioProcessorValueTreeState& getParameters() { return parameters; }
+
   void loadNamFile(const juce::String& filePath);
   void loadIrFile(const juce::File& irFile);
 
@@ -73,7 +76,24 @@ private:
   std::atomic<bool> irLoaded{false};
   std::atomic<bool> normalizeIr{true};
 
-  juce::AudioProcessorValueTreeState parameters;
+  // cache
+  float cInputLevel;
+  float cOutputLevel;
+  float cToneBass;
+  float cToneMid;
+  float cToneTreble;
+  bool cEqToggle;
+  bool cNoiseGateToggle;
+  float cNoiseGateThreshold;
+  int cSelectedNamModel;
+  int cSelectedIR;
+  bool cIrToggle;
+  bool cNormalizeNamOutput;
+  bool cNormalizeIrOutput;
+  float cTargetLoudness;
+
+  void updateCachedParameters();
+
   juce::LinearSmoothedValue<float> normalizationGainSmoother;
 
   juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>

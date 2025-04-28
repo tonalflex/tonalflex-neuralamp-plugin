@@ -3,14 +3,15 @@
 [  9%] Built target gmock_main
 [ 12%] Built target gtest_main
 [ 25%] Built target NAM
+[ 26%] Generating juce_binarydata_WebAssets/JuceLibraryCode/BinaryData1.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData2.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData3.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData4.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData5.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData.h
+[ 26%] Generating juce_binarydata_WebAssets/JuceLibraryCode/BinaryData1.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData2.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData3.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData4.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData5.cpp, juce_binarydata_WebAssets/JuceLibraryCode/BinaryData.h
 [ 36%] Built target WebAssets
-[ 38%] Building CXX object plugin/CMakeFiles/neuralamp.dir/src/editor.cpp.o
+[ 38%] Building CXX object plugin/CMakeFiles/neuralamp.dir/src/processor.cpp.o
 In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Core:168,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/Dense:1,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:10,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:8,
-                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/editor.h:4,
-                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/editor.cpp:1:
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:1:
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/util/Meta.h:214:60: warning: conversion to ‘long unsigned int’ from ‘int’ may change the sign of the result [-Wsign-conversion]
   214 | template<typename T, int N> struct array_size<const T (&)[N]> {
       |                                                            ^
@@ -365,7 +366,7 @@ In file included from /usr/include/c++/14/bits/stl_pair.h:60,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_graphics/juce_graphics.h:67,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_gui_basics/juce_gui_basics.h:68,
                  from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/juce_audio_processors.h:66,
-                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/editor.h:2:
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:2:
 /usr/include/c++/14/type_traits:890:5: note: declared here
   890 |     is_pod
       |     ^~~~~~
@@ -393,12 +394,23 @@ In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plu
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/NAM/dsp.h:257:22: note: previous declaration of ‘std::unique_ptr<nam::DSP> nam::get_dsp(std::filesystem::__cxx11::path, dspData&)’
   257 | std::unique_ptr<DSP> get_dsp(const std::filesystem::path model_file, dspData& returnedConfig);
       |                      ^~~~~~~
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/editor.cpp:236:6: error: redefinition of ‘void NeuralAmpEditor::irSelectionChanged()’
-  236 | void NeuralAmpEditor::irSelectionChanged() {
-      |      ^~~~~~~~~~~~~~~
-/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/editor.cpp:231:6: note: ‘void NeuralAmpEditor::irSelectionChanged()’ previously defined here
-  231 | void NeuralAmpEditor::irSelectionChanged() {
-      |      ^~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h: In constructor ‘NeuralAmpProcessor::NeuralAmpProcessor()’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:126:51: warning: ‘NeuralAmpProcessor::oversampler’ will be initialized after [-Wreorder]
+  126 |   std::unique_ptr<juce::dsp::Oversampling<float>> oversampler;
+      |                                                   ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:44:38: warning:   ‘juce::AudioProcessorValueTreeState NeuralAmpProcessor::parameters’ [-Wreorder]
+   44 |   juce::AudioProcessorValueTreeState parameters;
+      |                                      ^~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:113:1: warning:   when initialized here [-Wreorder]
+  113 | NeuralAmpProcessor::NeuralAmpProcessor()
+      | ^~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp: In member function ‘void NeuralAmpProcessor::updateCachedParameters()’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:403:8: warning: declaration of ‘normalizeIr’ shadows a member of ‘NeuralAmpProcessor’ [-Wshadow]
+  403 |   bool normalizeIr = parameters.getRawParameterValue("normalizeIrOutput")->load() > 0.5f;
+      |        ^~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/include/processor.h:77:21: note: shadowed declaration is here
+   77 |   std::atomic<bool> normalizeIr{true};
+      |                     ^~~~~~~~~~~
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h: In instantiation of ‘Eigen::DenseStorage<T, -1, -1, Cols_, Options_>::~DenseStorage() [with T = float; int Cols_ = 1; int Options_ = 0]’:
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/PlainObjectBase.h:95:7:   required from here
    95 | class PlainObjectBase : public internal::dense_xpr_base<Derived>::type
@@ -413,6 +425,149 @@ In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plu
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/DenseStorage.h:504:124: warning: conversion to ‘std::size_t’ {aka ‘long unsigned int’} from ‘Eigen::Index’ {aka ‘long int’} may change the sign of the result [-Wsign-conversion]
   504 |     EIGEN_DEVICE_FUNC ~DenseStorage() { internal::conditional_aligned_delete_auto<T,(Options_&DontAlign)==0>(m_data, m_rows*m_cols); }
       |                                                                                                                      ~~~~~~^~~~~~~
+In file included from /usr/include/c++/14/bits/shared_ptr_base.h:59,
+                 from /usr/include/c++/14/bits/shared_ptr.h:53,
+                 from /usr/include/c++/14/condition_variable:45,
+                 from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_core/system/juce_StandardHeader.h:66:
+/usr/include/c++/14/bits/unique_ptr.h: In instantiation of ‘std::__detail::__unique_ptr_t<_Tp> std::make_unique(_Args&& ...) [with _Tp = juce::AudioParameterFloat; _Args = {const char (&)[11], const char (&)[11], float, float, float, float}; __detail::__unique_ptr_t<_Tp> = __detail::__unique_ptr_t<juce::AudioParameterFloat>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:126:56:   required from here
+  126 |             std::make_unique<juce::AudioParameterFloat>("inputLevel", "InputLevel", -20.0f, 20.0f,
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  127 |                                                         0.1f, -14.0f),
+      |                                                         ~~~~~~~~~~~~~
+/usr/include/c++/14/bits/unique_ptr.h:1076:30: error: no matching function for call to ‘juce::AudioParameterFloat::AudioParameterFloat(const char [11], const char [11], float, float, float, float)’
+ 1076 |     { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/juce_audio_processors.h:173:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, float, float, float)’
+  122 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note:   candidate expects 5 arguments, 6 provided
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:98:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::String&, juce::AudioProcessorParameter::Category, std::function<juce::String(float, int)>, std::function<float(const juce::String&)>)’
+   98 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:100:51: note:   no known conversion for argument 3 from ‘float’ to ‘juce::NormalisableRange<float>’
+  100 |                          NormalisableRange<float> normalisableRange,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::AudioParameterFloatAttributes&)’
+   76 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note:   candidate expects 5 arguments, 6 provided
+/usr/include/c++/14/bits/unique_ptr.h: In instantiation of ‘std::__detail::__unique_ptr_t<_Tp> std::make_unique(_Args&& ...) [with _Tp = juce::AudioParameterFloat; _Args = {const char (&)[9], const char (&)[9], float, float, float, float}; __detail::__unique_ptr_t<_Tp> = __detail::__unique_ptr_t<juce::AudioParameterFloat>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:128:56:   required from here
+  128 |             std::make_unique<juce::AudioParameterFloat>("toneBass", "toneBass", 0.0f, 10.0f, 0.1f,
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  129 |                                                         5.0f),
+      |                                                         ~~~~~
+/usr/include/c++/14/bits/unique_ptr.h:1076:30: error: no matching function for call to ‘juce::AudioParameterFloat::AudioParameterFloat(const char [9], const char [9], float, float, float, float)’
+ 1076 |     { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, float, float, float)’
+  122 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note:   candidate expects 5 arguments, 6 provided
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:98:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::String&, juce::AudioProcessorParameter::Category, std::function<juce::String(float, int)>, std::function<float(const juce::String&)>)’
+   98 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:100:51: note:   no known conversion for argument 3 from ‘float’ to ‘juce::NormalisableRange<float>’
+  100 |                          NormalisableRange<float> normalisableRange,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::AudioParameterFloatAttributes&)’
+   76 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note:   candidate expects 5 arguments, 6 provided
+/usr/include/c++/14/bits/unique_ptr.h: In instantiation of ‘std::__detail::__unique_ptr_t<_Tp> std::make_unique(_Args&& ...) [with _Tp = juce::AudioParameterFloat; _Args = {const char (&)[8], const char (&)[11], float, float, float, float}; __detail::__unique_ptr_t<_Tp> = __detail::__unique_ptr_t<juce::AudioParameterFloat>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:130:56:   required from here
+  130 |             std::make_unique<juce::AudioParameterFloat>("toneMid", "toneMiddle", 0.0f, 10.0f, 0.1f,
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  131 |                                                         5.0f),
+      |                                                         ~~~~~
+/usr/include/c++/14/bits/unique_ptr.h:1076:30: error: no matching function for call to ‘juce::AudioParameterFloat::AudioParameterFloat(const char [8], const char [11], float, float, float, float)’
+ 1076 |     { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, float, float, float)’
+  122 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note:   candidate expects 5 arguments, 6 provided
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:98:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::String&, juce::AudioProcessorParameter::Category, std::function<juce::String(float, int)>, std::function<float(const juce::String&)>)’
+   98 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:100:51: note:   no known conversion for argument 3 from ‘float’ to ‘juce::NormalisableRange<float>’
+  100 |                          NormalisableRange<float> normalisableRange,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::AudioParameterFloatAttributes&)’
+   76 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note:   candidate expects 5 arguments, 6 provided
+/usr/include/c++/14/bits/unique_ptr.h: In instantiation of ‘std::__detail::__unique_ptr_t<_Tp> std::make_unique(_Args&& ...) [with _Tp = juce::AudioParameterFloat; _Args = {const char (&)[12], const char (&)[12], float, float, float, float}; __detail::__unique_ptr_t<_Tp> = __detail::__unique_ptr_t<juce::AudioParameterFloat>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:134:56:   required from here
+  134 |             std::make_unique<juce::AudioParameterFloat>("outputLevel", "outputLevel", -40.0f, 40.0f,
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  135 |                                                         0.1f, -4.0f),
+      |                                                         ~~~~~~~~~~~~
+/usr/include/c++/14/bits/unique_ptr.h:1076:30: error: no matching function for call to ‘juce::AudioParameterFloat::AudioParameterFloat(const char [12], const char [12], float, float, float, float)’
+ 1076 |     { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, float, float, float)’
+  122 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note:   candidate expects 5 arguments, 6 provided
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:98:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::String&, juce::AudioProcessorParameter::Category, std::function<juce::String(float, int)>, std::function<float(const juce::String&)>)’
+   98 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:100:51: note:   no known conversion for argument 3 from ‘float’ to ‘juce::NormalisableRange<float>’
+  100 |                          NormalisableRange<float> normalisableRange,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::AudioParameterFloatAttributes&)’
+   76 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note:   candidate expects 5 arguments, 6 provided
+/usr/include/c++/14/bits/unique_ptr.h: In instantiation of ‘std::__detail::__unique_ptr_t<_Tp> std::make_unique(_Args&& ...) [with _Tp = juce::AudioParameterFloat; _Args = {const char (&)[19], const char (&)[19], float, float, float, float}; __detail::__unique_ptr_t<_Tp> = __detail::__unique_ptr_t<juce::AudioParameterFloat>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:137:56:   required from here
+  137 |             std::make_unique<juce::AudioParameterFloat>("noiseGateThreshold", "noiseGateThreshold",
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  138 |                                                         -100.0f, 0.0f, 0.1f, -80.0f),
+      |                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14/bits/unique_ptr.h:1076:30: error: no matching function for call to ‘juce::AudioParameterFloat::AudioParameterFloat(const char [19], const char [19], float, float, float, float)’
+ 1076 |     { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, float, float, float)’
+  122 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note:   candidate expects 5 arguments, 6 provided
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:98:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::String&, juce::AudioProcessorParameter::Category, std::function<juce::String(float, int)>, std::function<float(const juce::String&)>)’
+   98 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:100:51: note:   no known conversion for argument 3 from ‘float’ to ‘juce::NormalisableRange<float>’
+  100 |                          NormalisableRange<float> normalisableRange,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::AudioParameterFloatAttributes&)’
+   76 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note:   candidate expects 5 arguments, 6 provided
+/usr/include/c++/14/bits/unique_ptr.h: In instantiation of ‘std::__detail::__unique_ptr_t<_Tp> std::make_unique(_Args&& ...) [with _Tp = juce::AudioParameterFloat; _Args = {const char (&)[15], const char (&)[15], float, float, float, float}; __detail::__unique_ptr_t<_Tp> = __detail::__unique_ptr_t<juce::AudioParameterFloat>]’:
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/src/processor.cpp:144:56:   required from here
+  144 |             std::make_unique<juce::AudioParameterFloat>("targetLoudness", "targetLoudness", -30.0f,
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  145 |                                                         -6.0f, 0.1f, -18.0f),
+      |                                                         ~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14/bits/unique_ptr.h:1076:30: error: no matching function for call to ‘juce::AudioParameterFloat::AudioParameterFloat(const char [15], const char [15], float, float, float, float)’
+ 1076 |     { return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...)); }
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, float, float, float)’
+  122 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:122:5: note:   candidate expects 5 arguments, 6 provided
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:98:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::String&, juce::AudioProcessorParameter::Category, std::function<juce::String(float, int)>, std::function<float(const juce::String&)>)’
+   98 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:100:51: note:   no known conversion for argument 3 from ‘float’ to ‘juce::NormalisableRange<float>’
+  100 |                          NormalisableRange<float> normalisableRange,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note: candidate: ‘juce::AudioParameterFloat::AudioParameterFloat(const juce::ParameterID&, const juce::String&, juce::NormalisableRange<float>, float, const juce::AudioParameterFloatAttributes&)’
+   76 |     AudioParameterFloat (const ParameterID& parameterID,
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/rekz/Documents/github/tonalflex-neuralamp-plugin/libs/juce/modules/juce_audio_processors/utilities/juce_AudioParameterFloat.h:76:5: note:   candidate expects 5 arguments, 6 provided
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp: In instantiation of ‘void nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::json_value::destroy(nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::value_t) [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer; nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::value_t = nlohmann::detail::value_t]’:
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/nlohmann/json.hpp:16505:24:   required from ‘nlohmann::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer>::~basic_json() [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::adl_serializer]’
 16505 |         m_value.destroy(m_type);
@@ -889,6 +1044,6 @@ In file included from /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plu
 /home/rekz/Documents/github/tonalflex-neuralamp-plugin/plugin/NeuralAmpModelerCore/Dependencies/eigen/Eigen/src/Core/MapBase.h:207:82: warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
   207 |     void checkSanity(std::enable_if_t<internal::traits<T>::Alignment==0,void*> = 0) const
       |                                                                                  ^
-gmake[2]: *** [plugin/CMakeFiles/neuralamp.dir/build.make:90: plugin/CMakeFiles/neuralamp.dir/src/editor.cpp.o] Error 1
+gmake[2]: *** [plugin/CMakeFiles/neuralamp.dir/build.make:76: plugin/CMakeFiles/neuralamp.dir/src/processor.cpp.o] Error 1
 gmake[1]: *** [CMakeFiles/Makefile2:350: plugin/CMakeFiles/neuralamp.dir/all] Error 2
 gmake: *** [Makefile:146: all] Error 2

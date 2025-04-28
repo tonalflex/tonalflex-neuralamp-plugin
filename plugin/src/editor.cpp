@@ -1,61 +1,125 @@
 #include "editor.h"
+#include "processor.h"
 
 NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&p), processor(p) {
-  setSize(400, 800);
+  webView = std::make_unique<juce::WebBrowserComponent>(
+      juce::WebBrowserComponent::Options{}
+          .withNativeIntegrationEnabled()  // (C++ <=> JS bridge, events, etc.)
 
-  auto& params = processor.getParameters();
+          // Explicitly use WebView2 backend on Windows for modern HTML/CSS/JS support
+          // JUCE defaults to WebKit on macOS/Linux
+          .withBackend(juce::WebBrowserComponent::Options::Backend::webview2)
+          .withWinWebView2Options(
+              juce::WebBrowserComponent::Options::WinWebView2{}.withUserDataFolder(
+                  juce::File::getSpecialLocation(juce::File::tempDirectory)))
+
+          // Provide WebView UI resources from JUCE BinaryData (HTML/CSS/JS, etc.)
+          .withResourceProvider([this](const auto& url) { return getResource(url); },
+                                juce::URL{"http://localhost:5173/"}.getOrigin())
+
+          // Add support for control focus tracking in the WebView (parameter automation)
+          .withOptionsFrom(controlParameterIndexReceiver)
+
+          // Bind parameter relays for two-way communication (C++ <=> JS)
+          .withOptionsFrom(inputLevelRelay)
+          .withOptionsFrom(outputLevelRelay)
+          .withOptionsFrom(bassRelay)
+          .withOptionsFrom(midRelay)
+          .withOptionsFrom(trebleRelay)
+          .withOptionsFrom(noiseGateThresholdRelay)
+          .withOptionsFrom(noiseGateToggleRelay)
+          .withOptionsFrom(eqToggleRelay)
+          .withOptionsFrom(irToggleRelay)
+          .withOptionsFrom(normalizeNamOutputRelay)
+          .withOptionsFrom(normalizeIrOutputRelay)
+          .withOptionsFrom(modelDropdownRelay)
+          .withOptionsFrom(irDropdownRelay)
+
+          // Example: register a JUCE C++ function callable from JS for debugging/testing
+          .withNativeFunction(
+              "getModelChoices",
+              [this](const juce::Array<juce::var>& args,
+                     juce::WebBrowserComponent::NativeFunctionCompletion completion) {
+                juce::StringArray names = processor.getModelNames();
+                juce::Array<juce::var> result;
+                for (const auto& name : names) {
+                  result.add(juce::var(name));
+                }
+                juce::Logger::writeToLog("getModelChoices returning: " +
+                                         names.joinIntoString(", "));
+                completion(result);
+              })
+          .withNativeFunction(
+              "getIRChoices",
+              [this](const juce::Array<juce::var>& args,
+                     juce::WebBrowserComponent::NativeFunctionCompletion completion) {
+                juce::StringArray names = processor.getIrNames();
+                juce::Array<juce::var> result;
+                for (const auto& name : names) {
+                  result.add(juce::var(name));
+                }
+                juce::Logger::writeToLog("getIRChoices returning: " + names.joinIntoString(", "));
+                completion(result);
+              })
+
+          // Inject debug message into browser console on load
+          .withUserScript(R"(console.log("JUCE C++ Backend is running!");)"));
+
+  // Set size of desktop plugin window (pixels)
+  setSize(1000, 600);
+
+  // Ensure WebView is added after full construction (avoids timing issues)
+  juce::MessageManager::callAsync([this]() {
+    addAndMakeVisible(*webView);
+    webView->goToURL(juce::WebBrowserComponent::getResourceProviderRoot() + "index.html");
+  });
 
   // Attach Sliders
   inputGainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-      params, "inputLevel", inputGainSlider);
+      processor.getParameters(), "inputLevel", inputGainSlider);
   outputGainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-      params, "outputLevel", outputGainSlider);
+      processor.getParameters(), "outputLevel", outputGainSlider);
   bassAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-      params, "toneBass", bassSlider);
+      processor.getParameters(), "toneBass", bassSlider);
   midAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-      params, "toneMid", midSlider);
+      processor.getParameters(), "toneMid", midSlider);
   trebleAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-      params, "toneTreble", trebleSlider);
+      processor.getParameters(), "toneTreble", trebleSlider);
   noiseGateThresholdAttachment =
       std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-          params, "noiseGateThreshold", noiseGateThresholdSlider);
-  inputCalibrationLevelAttachment =
-      std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-          params, "inputCalibrationLevel", inputCalibrationLevelSlider);
+          processor.getParameters(), "noiseGateThreshold", noiseGateThresholdSlider);
 
   // Attach Toggles
   noiseGateAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(
-      params, "noiseGateActive", noiseGateToggle);
-  irAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(
-      params, "irToggle", irToggle);
-  eqActiveAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(
-      params, "eqActive", eqActiveToggle);
-  normalizeActiveAttachment =
+      processor.getParameters(), "noiseGateToggle", noiseGateToggle);
+  irToggleAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(
+      processor.getParameters(), "irToggle", irToggle);
+  eqToggleAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(
+      processor.getParameters(), "eqToggle", eqToggle);
+  normalizeNamOutputAttachment =
       std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(
-          params, "normalizeNamOutput", normalizeActiveToggle);
-  normalizeIrActiveAttachment =
+          processor.getParameters(), "normalizeNamOutput", normalizeNamOutput);
+  normalizeIrOutputAttachment =
       std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(
-          params, "normalizeIrOutput", normalizeIrActiveToggle);
+          processor.getParameters(), "normalizeIrOutput", normalizeIrOutput);
 
   // Attach ComboBoxes
   modelDropdownAttachment =
       std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(
-          params, "selectedNamModel", modelDropdown);
+          processor.getParameters(), "selectedNamModel", modelDropdown);
   irDropdownAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(
-      params, "selectedIR", irDropdown);
+      processor.getParameters(), "selectedIR", irDropdown);
 
   // Setup Model Dropdown
   modelDropdownLabel.setText("Model Selector", juce::dontSendNotification);
   addAndMakeVisible(modelDropdownLabel);
   addAndMakeVisible(modelDropdown);
-  modelDropdown.onChange = [this] { modelSelectionChanged(); };
   updateModelDropdown();
 
   // Setup IR Dropdown
   irDropdownLabel.setText("IR Selector", juce::dontSendNotification);
   addAndMakeVisible(irDropdownLabel);
   addAndMakeVisible(irDropdown);
-  irDropdown.onChange = [this] { irSelectionChanged(); };
   updateIrDropdown();
 
   // Configure Sliders
@@ -69,7 +133,6 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
   setupSlider(midSlider);
   setupSlider(trebleSlider);
   setupSlider(noiseGateThresholdSlider);
-  setupSlider(inputCalibrationLevelSlider);
 
   // Setup and Add Sliders with Labels
   inputGainLabel.setText("Input Gain", juce::dontSendNotification);
@@ -96,40 +159,31 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
   addAndMakeVisible(noiseGateThresholdLabel);
   addAndMakeVisible(noiseGateThresholdSlider);
 
-  inputCalibrationLevelLabel.setText("Input Calibration", juce::dontSendNotification);
-  addAndMakeVisible(inputCalibrationLevelLabel);
-  addAndMakeVisible(inputCalibrationLevelSlider);
-
   // Setup and Add Toggles with Labels
   noiseGateLabel.setText("Noise Gate", juce::dontSendNotification);
   addAndMakeVisible(noiseGateLabel);
   noiseGateToggle.setButtonText("");
   addAndMakeVisible(noiseGateToggle);
 
-  irLabel.setText("IR Toggle", juce::dontSendNotification);
-  addAndMakeVisible(irLabel);
+  irToggleLabel.setText("IR Toggle", juce::dontSendNotification);
+  addAndMakeVisible(irToggleLabel);
   irToggle.setButtonText("");
   addAndMakeVisible(irToggle);
 
-  eqActiveLabel.setText("EQ Active", juce::dontSendNotification);
-  addAndMakeVisible(eqActiveLabel);
-  eqActiveToggle.setButtonText("");
-  addAndMakeVisible(eqActiveToggle);
+  eqToggleLabel.setText("EQ Active", juce::dontSendNotification);
+  addAndMakeVisible(eqToggleLabel);
+  eqToggle.setButtonText("");
+  addAndMakeVisible(eqToggle);
 
-  normalizeActiveLabel.setText("Nornamlize NAM", juce::dontSendNotification);
-  addAndMakeVisible(normalizeActiveLabel);
-  normalizeActiveToggle.setButtonText("");
-  addAndMakeVisible(normalizeActiveToggle);
+  normalizeNamOutputLabel.setText("Nornamlize NAM", juce::dontSendNotification);
+  addAndMakeVisible(normalizeNamOutputLabel);
+  normalizeNamOutput.setButtonText("");
+  addAndMakeVisible(normalizeNamOutput);
 
-  normalizeIrActiveLabel.setText("Nornamlize IR", juce::dontSendNotification);
-  addAndMakeVisible(normalizeIrActiveLabel);
-  normalizeIrActiveToggle.setButtonText("");
-  addAndMakeVisible(normalizeIrActiveToggle);
-
-  calibrateInputLabel.setText("Calibrate Input", juce::dontSendNotification);
-  addAndMakeVisible(calibrateInputLabel);
-  calibrateInputToggle.setButtonText("");
-  addAndMakeVisible(calibrateInputToggle);
+  normalizeIrOutputLabel.setText("Nornamlize IR", juce::dontSendNotification);
+  addAndMakeVisible(normalizeIrOutputLabel);
+  normalizeIrOutput.setButtonText("");
+  addAndMakeVisible(normalizeIrOutput);
 }
 
 NeuralAmpEditor::~NeuralAmpEditor() {}
@@ -141,71 +195,68 @@ void NeuralAmpEditor::paint(juce::Graphics& g) {
 }
 
 void NeuralAmpEditor::resized() {
-  auto area = getLocalBounds().reduced(10, 0);
+  auto bounds = getLocalBounds();
+  auto leftPanel = bounds.removeFromLeft(bounds.getWidth() / 2);
+
   auto rowHeight = 40;  // Increased for better spacing
   auto labelWidth = 150;
 
-  auto row = area.removeFromTop(rowHeight);
+  auto row = leftPanel.removeFromTop(rowHeight);
   inputGainLabel.setBounds(row.removeFromLeft(labelWidth));
   inputGainSlider.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
+  row = leftPanel.removeFromTop(rowHeight);
   outputGainLabel.setBounds(row.removeFromLeft(labelWidth));
   outputGainSlider.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
+  row = leftPanel.removeFromTop(rowHeight);
   bassLabel.setBounds(row.removeFromLeft(labelWidth));
   bassSlider.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
+  row = leftPanel.removeFromTop(rowHeight);
   midLabel.setBounds(row.removeFromLeft(labelWidth));
   midSlider.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
+  row = leftPanel.removeFromTop(rowHeight);
   trebleLabel.setBounds(row.removeFromLeft(labelWidth));
   trebleSlider.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
+  row = leftPanel.removeFromTop(rowHeight);
   noiseGateThresholdLabel.setBounds(row.removeFromLeft(labelWidth));
   noiseGateThresholdSlider.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
-  inputCalibrationLevelLabel.setBounds(row.removeFromLeft(labelWidth));
-  inputCalibrationLevelSlider.setBounds(row);
-
-  row = area.removeFromTop(rowHeight);
+  row = leftPanel.removeFromTop(rowHeight);
   noiseGateLabel.setBounds(row.removeFromLeft(labelWidth));
   noiseGateToggle.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
-  irLabel.setBounds(row.removeFromLeft(labelWidth));
+  row = leftPanel.removeFromTop(rowHeight);
+  irToggleLabel.setBounds(row.removeFromLeft(labelWidth));
   irToggle.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
-  eqActiveLabel.setBounds(row.removeFromLeft(labelWidth));
-  eqActiveToggle.setBounds(row);
+  row = leftPanel.removeFromTop(rowHeight);
+  eqToggleLabel.setBounds(row.removeFromLeft(labelWidth));
+  eqToggle.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
-  normalizeActiveLabel.setBounds(row.removeFromLeft(labelWidth));
-  normalizeActiveToggle.setBounds(row);
+  row = leftPanel.removeFromTop(rowHeight);
+  normalizeNamOutputLabel.setBounds(row.removeFromLeft(labelWidth));
+  normalizeNamOutput.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
-  normalizeIrActiveLabel.setBounds(row.removeFromLeft(labelWidth));
-  normalizeIrActiveToggle.setBounds(row);
+  row = leftPanel.removeFromTop(rowHeight);
+  normalizeIrOutputLabel.setBounds(row.removeFromLeft(labelWidth));
+  normalizeIrOutput.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
-  calibrateInputLabel.setBounds(row.removeFromLeft(labelWidth));
-  calibrateInputToggle.setBounds(row);
-
-  row = area.removeFromTop(rowHeight);
+  row = leftPanel.removeFromTop(rowHeight);
   modelDropdownLabel.setBounds(row.removeFromLeft(labelWidth));
   modelDropdown.setBounds(row);
 
-  row = area.removeFromTop(rowHeight);
+  row = leftPanel.removeFromTop(rowHeight);
   irDropdownLabel.setBounds(row.removeFromLeft(labelWidth));
   irDropdown.setBounds(row);
+
+  webView->setBounds(bounds);
 }
 
+// Add Nam items to dropdown
 void NeuralAmpEditor::updateModelDropdown() {
   modelDropdown.clear();
   const auto& modelNames = processor.getModelNames();
@@ -235,6 +286,7 @@ void NeuralAmpEditor::updateModelDropdown() {
   }
 }
 
+// Add IR items to dropdown
 void NeuralAmpEditor::updateIrDropdown() {
   irDropdown.clear();
   const auto& irNames = processor.getIrNames();
@@ -264,20 +316,57 @@ void NeuralAmpEditor::updateIrDropdown() {
   }
 }
 
-void NeuralAmpEditor::modelSelectionChanged() {
-  int selectedId = modelDropdown.getSelectedId();
-  processor.setCurrentModelIndex(selectedId);  // ComboBox ID passed directly
-}
+// Get the WebView UI resources from BinaryData
+std::optional<juce::WebBrowserComponent::Resource> NeuralAmpEditor::getResource(
+    const juce::String& url) {
+  juce::Logger::writeToLog("Requested URL: " + url);
 
-void NeuralAmpEditor::irSelectionChanged() {
-  int selectedId = irDropdown.getSelectedId();
-  processor.setCurrentIrIndex(selectedId);  // ComboBox ID passed directly
-}
+  // Extract filename and normalize to match BinaryData naming
+  juce::String filename = juce::URL(url).getFileName().trim();
+  juce::String resourceName = filename.removeCharacters("-").replaceCharacter('.', '_');
 
-void NeuralAmpEditor::comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged) {
-  if (comboBoxThatHasChanged == &modelDropdown) {
-    modelSelectionChanged();
-  } else if (comboBoxThatHasChanged == &irDropdown) {
-    irSelectionChanged();
+  int size = 0;
+  const char* data = BinaryData::getNamedResource(resourceName.toRawUTF8(), size);
+
+  if (data == nullptr || size <= 0) {
+    juce::Logger::writeToLog("Resource not found or empty: " + resourceName);
+    return std::nullopt;
   }
+
+  std::vector<std::byte> content(static_cast<size_t>(size));
+  std::memcpy(content.data(), data, static_cast<size_t>(size));
+
+  juce::String ext = filename.fromLastOccurrenceOf(".", false, false).toLowerCase();
+  juce::String mime = getMimeForExtension(ext);
+  if (mime.isEmpty())
+    mime = "application/octet-stream";
+
+  juce::Logger::writeToLog("Returning resource: " + resourceName + " (" + mime + ")");
+  return juce::WebBrowserComponent::Resource{std::move(content), mime};
+}
+
+// Map file extensions to MIME types for serving embedded resources in the WebView UI
+juce::String NeuralAmpEditor::getMimeForExtension(const juce::String& extension) {
+  static const std::unordered_map<juce::String, juce::String> mimeMap = {
+      {"htm", "text/html"},
+      {"html", "text/html"},
+      {"txt", "text/plain"},
+      {"jpg", "image/jpeg"},
+      {"jpeg", "image/jpeg"},
+      {"svg", "image/svg+xml"},
+      {"ico", "image/vnd.microsoft.icon"},
+      {"json", "application/json"},
+      {"png", "image/png"},
+      {"css", "text/css"},
+      {"map", "application/json"},
+      {"js", "text/javascript"},
+      {"woff2", "font/woff2"}};
+
+  const auto lower = extension.toLowerCase();
+
+  if (const auto it = mimeMap.find(lower); it != mimeMap.end())
+    return it->second;
+
+  jassertfalse;
+  return "application/octet-stream";
 }
