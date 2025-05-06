@@ -20,6 +20,7 @@ Before you begin, ensure you have the following installed:
 💡 **Tip**: Use the **CMake Presets** included in this project for an easy, consistent setup!
 
 ---
+## 
 
 ## **📦 Embedded Cross-Compilation** _(ElkOS)_
 
@@ -65,6 +66,9 @@ Alternatively, you can automate this step inside a wrapper script or CI pipeline
 If you want to build the plugin for desktop, use:
 
 ```sh
+# Fetch NeuralAmpModelerCore submodule
+git submodule update --init --recursive
+
 # Option 1 - Debug Mode
 cmake -B build -S . -DHEADLESS=OFF -DCMAKE_BUILD_TYPE=Debug
 
