@@ -106,8 +106,8 @@ function onInput(e: Event) {
 
 /* Knob div */
 .knob {
-  width: 75px; /* one frame size */
-  height: 75px;
+  width: 75px; 
+  height: 75px; /* one frame size */
   background-repeat: no-repeat;
   background-size: 100% auto;
   cursor: grab;

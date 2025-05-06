@@ -2,6 +2,7 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_dsp/juce_dsp.h>
 #include <juce_gui_basics/juce_gui_basics.h>
+#include <juce_audio_formats/juce_audio_formats.h>
 #include <map>
 #include <atomic>
 #include <memory>
@@ -20,23 +21,26 @@ public:
 
   void prepareToPlay(double sampleRate, int samplesPerBlock) override;
   void releaseResources() override;
+
+  bool isBusesLayoutSupported(const BusesLayout& layouts) const override;
+
   void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
-  void processBlock(juce::AudioBuffer<double>&, juce::MidiBuffer&) override;
+  using AudioProcessor::processBlock;
 
   juce::AudioProcessorEditor* createEditor() override;
-  bool hasEditor() const override { return true; }
+  bool hasEditor() const override;
 
-  const juce::String getName() const override { return "NeuralAmp"; }
-  double getTailLengthSeconds() const override { return 0.0; }
+  const juce::String getName() const override;
+  double getTailLengthSeconds() const override;
 
-  bool acceptsMidi() const override { return false; }
-  bool producesMidi() const override { return false; }
-
-  int getNumPrograms() override { return 1; }
-  int getCurrentProgram() override { return 0; }
-  void setCurrentProgram(int) override {}
-  const juce::String getProgramName(int) override { return {}; }
-  void changeProgramName(int, const juce::String&) override {}
+  bool acceptsMidi() const override;
+  bool producesMidi() const override;
+  bool isMidiEffect() const override;
+  int getNumPrograms() override;
+  int getCurrentProgram() override;
+  void setCurrentProgram(int) override;
+  const juce::String getProgramName(int) override;
+  void changeProgramName(int, const juce::String&) override;
 
   void getStateInformation(juce::MemoryBlock& destData) override;
   void setStateInformation(const void* data, int sizeInBytes) override;

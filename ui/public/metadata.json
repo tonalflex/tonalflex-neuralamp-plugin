@@ -1,12 +1,6 @@
 {
-    "name": "Plugin",
-    "path": "plugin.vst3",
+    "name": "NeuralAmp",
+    "path": "neuralamp.vst3",
     "system-plugin": "false",
-    "description": "TonalFlex Template Plugin provides a starting point for creating Audio DSP Plugins using JUCE framework.",
-    "parameters": {
-        "roomSize": "Room Size",
-        "damping": "Damping",
-        "wetLevel": "Wet Level",
-        "dryLevel": "Dry Level"
-    }
+    "description": "NeuralAmp simulates real hardware using neural networks for authentic tone."
 }

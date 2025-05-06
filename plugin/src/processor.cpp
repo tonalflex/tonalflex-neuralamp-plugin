@@ -37,7 +37,7 @@ juce::StringArray NeuralAmpProcessor::getSortedNamModelNames(
     if (name.isNotEmpty()) {
       modelNames.add(name);
       modelPaths.push_back(file.getFullPathName());
-      DBG("Added model: " << name << " at path: " << file.getFullPathName());
+      // DBG("Added model: " << name << " at path: " << file.getFullPathName());
     } else {
       DBG("Skipped invalid model name for file: " << file.getFullPathName());
     }
@@ -71,7 +71,7 @@ juce::StringArray NeuralAmpProcessor::getSortedIrNames(const juce::File& irFolde
     if (name.isNotEmpty()) {
       names.add(name);
       irPaths.push_back(file.getFullPathName());
-      DBG("Added IR: " << name << " from path: " << file.getFullPathName());
+      // DBG("Added IR: " << name << " from path: " << file.getFullPathName());
     }
   }
   return names;
@@ -150,7 +150,6 @@ juce::AudioProcessorValueTreeState::ParameterLayout NeuralAmpProcessor::createPa
   layout.add(std::make_unique<juce::AudioParameterBool>("irToggle", "irToggle", true));
   layout.add(
       std::make_unique<juce::AudioParameterBool>("normalizeNamOutput", "normalizeNamOutput", true));
-  layout.add(std::make_unique<juce::AudioParameterBool>("calibrateInput", "calibrateInput", false));
   layout.add(std::make_unique<juce::AudioParameterFloat>(
       "targetLoudness", "targetLoudness", juce::NormalisableRange<float>(-30.0f, -6.0f, 0.1f),
       -18.0f));
@@ -170,7 +169,42 @@ juce::AudioProcessorValueTreeState::ParameterLayout NeuralAmpProcessor::createPa
 }
 
 NeuralAmpProcessor::~NeuralAmpProcessor() {
-  DBG("NeuralAmpProcessor destroyed");
+  releaseResources();
+  juce::Logger::writeToLog("[Processor] Destructor called");
+}
+
+const juce::String NeuralAmpProcessor::getName() const {
+  return "NeuralAmp";
+}
+
+bool NeuralAmpProcessor::acceptsMidi() const {
+  return false;
+}
+bool NeuralAmpProcessor::producesMidi() const {
+  return false;
+}
+bool NeuralAmpProcessor::isMidiEffect() const {
+  return false;
+}
+double NeuralAmpProcessor::getTailLengthSeconds() const {
+  return 0.0;
+}
+
+int NeuralAmpProcessor::getNumPrograms() {
+  return 1;
+}
+int NeuralAmpProcessor::getCurrentProgram() {
+  return 0;
+}
+void NeuralAmpProcessor::setCurrentProgram(int index) {
+  juce::ignoreUnused(index);
+}
+const juce::String NeuralAmpProcessor::getProgramName(int index) {
+  juce::ignoreUnused(index);
+  return {};
+}
+void NeuralAmpProcessor::changeProgramName(int index, const juce::String& newName) {
+  juce::ignoreUnused(index, newName);
 }
 
 void NeuralAmpProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
@@ -247,10 +281,23 @@ void NeuralAmpProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
 }
 
 void NeuralAmpProcessor::releaseResources() {
-  DBG("Releasing resources");
+  juce::Logger::writeToLog("[Processor] releaseResources() called");
   bassFilter.reset();
   midFilter.reset();
   trebleFilter.reset();
+}
+
+bool NeuralAmpProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const {
+  if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono() &&
+      layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
+    return false;
+
+#if !JucePlugin_IsSynth
+  if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
+    return false;
+#endif
+
+  return true;
 }
 
 void NeuralAmpProcessor::setCurrentModelIndex(int comboBoxId) {
@@ -522,9 +569,8 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
   }
 }
 
-void NeuralAmpProcessor::processBlock(juce::AudioBuffer<double>& buffer, juce::MidiBuffer& midi) {
-  juce::ignoreUnused(midi);  // Silence unused parameter warning
-  buffer.clear();
+bool NeuralAmpProcessor::hasEditor() const {
+  return true;
 }
 
 juce::AudioProcessorEditor* NeuralAmpProcessor::createEditor() {
@@ -536,21 +582,11 @@ juce::AudioProcessorEditor* NeuralAmpProcessor::createEditor() {
 }
 
 void NeuralAmpProcessor::getStateInformation(juce::MemoryBlock& destData) {
-  auto state = parameters.copyState();
-  std::unique_ptr<juce::XmlElement> xml(state.createXml());
-  xml->setAttribute("currentModelIndex", currentModelIndex);
-  xml->setAttribute("currentIrIndex", currentIrIndex);
-  copyXmlToBinary(*xml, destData);
+  juce::ignoreUnused(destData);
 }
 
 void NeuralAmpProcessor::setStateInformation(const void* data, int sizeInBytes) {
-  std::unique_ptr<juce::XmlElement> xml(getXmlFromBinary(data, sizeInBytes));
-  if (xml) {
-    juce::ValueTree newState = juce::ValueTree::fromXml(*xml);
-    parameters.replaceState(newState);
-    setCurrentModelIndex(xml->getIntAttribute("currentModelIndex", -1));
-    setCurrentIrIndex(xml->getIntAttribute("currentIrIndex", -1));
-  }
+  juce::ignoreUnused(data, sizeInBytes);
 }
 
 void NeuralAmpProcessor::loadNamFile(const juce::String& filePath) {

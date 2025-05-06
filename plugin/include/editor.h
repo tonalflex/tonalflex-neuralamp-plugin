@@ -15,7 +15,7 @@ struct SinglePageBrowser : juce::WebBrowserComponent {
 
 class NeuralAmpEditor : public juce::AudioProcessorEditor {
 public:
-  NeuralAmpEditor(NeuralAmpProcessor&);
+  explicit NeuralAmpEditor(NeuralAmpProcessor&);
   ~NeuralAmpEditor() override;
 
   void paint(juce::Graphics&) override;
@@ -26,10 +26,8 @@ public:
   }
 
 private:
-  void updateModelDropdown();
-  void updateIrDropdown();
-
   NeuralAmpProcessor& processor;
+
   //==============================================================================
   // WebView UI
   //==============================================================================
@@ -67,20 +65,20 @@ private:
   juce::WebSliderParameterAttachment noiseGateThresholdWebAttachment{
       *processor.parameters.getParameter("noiseGateThreshold"), noiseGateThresholdRelay, nullptr};
   juce::WebToggleButtonParameterAttachment noiseGateToggleWebAttachment{
-      *processor.parameters.getParameter("noiseGateToggle"), noiseGateToggleRelay};
+      *processor.parameters.getParameter("noiseGateToggle"), noiseGateToggleRelay, nullptr};
   juce::WebToggleButtonParameterAttachment eqActiveWebAttachment{
-      *processor.parameters.getParameter("eqToggle"), eqToggleRelay};
+      *processor.parameters.getParameter("eqToggle"), eqToggleRelay, nullptr};
   juce::WebToggleButtonParameterAttachment irToggleWebAttachment{
-      *processor.parameters.getParameter("irToggle"), irToggleRelay};
+      *processor.parameters.getParameter("irToggle"), irToggleRelay, nullptr};
   juce::WebToggleButtonParameterAttachment normalizeNamOutputWebAttachment{
-      *processor.parameters.getParameter("normalizeNamOutput"), normalizeNamOutputRelay};
+      *processor.parameters.getParameter("normalizeNamOutput"), normalizeNamOutputRelay, nullptr};
   juce::WebToggleButtonParameterAttachment normalizeIrOutputWebAttachment{
-      *processor.parameters.getParameter("normalizeIrOutput"), normalizeIrOutputRelay};
+      *processor.parameters.getParameter("normalizeIrOutput"), normalizeIrOutputRelay, nullptr};
 
   juce::WebComboBoxParameterAttachment modelDropdownWebAttachment{
-      *processor.parameters.getParameter("selectedNamModel"), modelDropdownRelay};
+      *processor.parameters.getParameter("selectedNamModel"), modelDropdownRelay, nullptr};
   juce::WebComboBoxParameterAttachment irDropdownWebAttachment{
-      *processor.parameters.getParameter("selectedIR"), irDropdownRelay};
+      *processor.parameters.getParameter("selectedIR"), irDropdownRelay, nullptr};
 
   std::optional<juce::WebBrowserComponent::Resource> getResource(const juce::String& url);
   juce::String getMimeForExtension(const juce::String& extension);
@@ -88,7 +86,11 @@ private:
   //==============================================================================
   // Native JUCE UI
   //==============================================================================
+  /* !!!
+  void updateModelDropdown();
+  void updateIrDropdown();
 
+  // Native UI debug parts = !!!
   // Sliders
   juce::Slider inputGainSlider, outputGainSlider, bassSlider, midSlider, trebleSlider,
       noiseGateThresholdSlider;
@@ -113,6 +115,8 @@ private:
       normalizeIrOutputAttachment;
   std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> modelDropdownAttachment,
       irDropdownAttachment;
+
+  */
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NeuralAmpEditor)
 };

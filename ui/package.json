@@ -1,6 +1,6 @@
 {
-  "name": "@tonalflex/template-plugin",
-  "version": "0.0.7",
+  "name": "@tonalflex/neuralamp-plugin",
+  "version": "0.0.1",
   "type": "module",
   "private": false,
   "files": [
@@ -23,6 +23,7 @@
     "@types/node": "^22.13.17",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
+    "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
     "vite-plugin-css-injected-by-js": "^3.5.2",

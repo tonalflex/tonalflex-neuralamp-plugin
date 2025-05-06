@@ -9,8 +9,8 @@ include(cmake/cpm.cmake)
 # Download JUCE using CPM
 CPMAddPackage(
     NAME JUCE
-    GIT_TAG 8.0.2
-    VERSION 8.0.2
+    GIT_TAG 8.0.7
+    VERSION 8.0.7
     GITHUB_REPOSITORY juce-framework/JUCE
     SOURCE_DIR ${LIB_DIR}/juce
 )

@@ -3,6 +3,7 @@
 
 NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&p), processor(p) {
   webView = std::make_unique<juce::WebBrowserComponent>(
+
       juce::WebBrowserComponent::Options{}
           .withNativeIntegrationEnabled()  // (C++ <=> JS bridge, events, etc.)
 
@@ -35,7 +36,6 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
           .withOptionsFrom(modelDropdownRelay)
           .withOptionsFrom(irDropdownRelay)
 
-          // Example: register a JUCE C++ function callable from JS for debugging/testing
           .withNativeFunction(
               "getModelChoices",
               [this](const juce::Array<juce::var>& args,
@@ -45,8 +45,8 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
                 for (const auto& name : names) {
                   result.add(juce::var(name));
                 }
-                juce::Logger::writeToLog("getModelChoices returning: " +
-                                         names.joinIntoString(", "));
+                // juce::Logger::writeToLog("getModelChoices returning: " +
+                //                         names.joinIntoString(", "));
                 completion(result);
               })
           .withNativeFunction(
@@ -58,7 +58,8 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
                 for (const auto& name : names) {
                   result.add(juce::var(name));
                 }
-                juce::Logger::writeToLog("getIRChoices returning: " + names.joinIntoString(", "));
+                // juce::Logger::writeToLog("getIRChoices returning: " + names.joinIntoString(",
+                // "));
                 completion(result);
               })
 
@@ -66,7 +67,7 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
           .withUserScript(R"(console.log("JUCE C++ Backend is running!");)"));
 
   // Set size of desktop plugin window (pixels)
-  setSize(1000, 600);
+  setSize(500, 600);
 
   // Ensure WebView is added after full construction (avoids timing issues)
   juce::MessageManager::callAsync([this]() {
@@ -74,6 +75,8 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
     webView->goToURL(juce::WebBrowserComponent::getResourceProviderRoot() + "index.html");
   });
 
+  // !!!
+  /*
   // Attach Sliders
   inputGainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
       processor.getParameters(), "inputLevel", inputGainSlider);
@@ -184,18 +187,21 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
   addAndMakeVisible(normalizeIrOutputLabel);
   normalizeIrOutput.setButtonText("");
   addAndMakeVisible(normalizeIrOutput);
+  */
 }
 
 NeuralAmpEditor::~NeuralAmpEditor() {}
 
 void NeuralAmpEditor::paint(juce::Graphics& g) {
-  g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
-  g.setColour(juce::Colours::black);
-  g.setFont(15.0f);
+  // g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
+  // g.setColour(juce::Colours::black);
+  // g.setFont(15.0f);
 }
 
 void NeuralAmpEditor::resized() {
   auto bounds = getLocalBounds();
+
+  /*
   auto leftPanel = bounds.removeFromLeft(bounds.getWidth() / 2);
 
   auto rowHeight = 40;  // Increased for better spacing
@@ -252,10 +258,12 @@ void NeuralAmpEditor::resized() {
   row = leftPanel.removeFromTop(rowHeight);
   irDropdownLabel.setBounds(row.removeFromLeft(labelWidth));
   irDropdown.setBounds(row);
+  */
 
   webView->setBounds(bounds);
 }
 
+/*
 // Add Nam items to dropdown
 void NeuralAmpEditor::updateModelDropdown() {
   modelDropdown.clear();
@@ -315,6 +323,7 @@ void NeuralAmpEditor::updateIrDropdown() {
     DBG("Selected 'No IR' (dropdown ID: 1)");
   }
 }
+*/
 
 // Get the WebView UI resources from BinaryData
 std::optional<juce::WebBrowserComponent::Resource> NeuralAmpEditor::getResource(
