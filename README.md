@@ -26,6 +26,8 @@ Before you begin, ensure you have the following installed:
 Build the plugin for ElkOS using the prebuilt docker image specified in `docker-compose.yml`.
 
 ```sh
+# Hint - You might get permission denied on the bin folder on linux.
+# Run "sudo chown -R $USER:$USER ./bin" in the project root and rerun docker!
 docker-compose up
 ```
 

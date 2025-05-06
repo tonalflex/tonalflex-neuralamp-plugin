@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Pull Prebuilt Docker Image
         run: docker pull ghcr.io/tonalflex/elk-audio-os-builder:latest
