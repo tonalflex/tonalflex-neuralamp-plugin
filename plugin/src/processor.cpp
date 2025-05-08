@@ -132,11 +132,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout NeuralAmpProcessor::createPa
   juce::AudioProcessorValueTreeState::ParameterLayout layout;
 
   layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "inputLevel", "InputLevel", juce::NormalisableRange<float>(-20.0f, 20.0f, 0.1f), -14.0f));
+      "inputLevel", "inputLevel", juce::NormalisableRange<float>(-20.0f, 20.0f, 0.1f), -14.0f));
   layout.add(std::make_unique<juce::AudioParameterFloat>(
       "toneBass", "toneBass", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
   layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "toneMid", "toneMiddle", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
+      "toneMiddle", "toneMiddle", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
   layout.add(std::make_unique<juce::AudioParameterFloat>(
       "toneTreble", "toneTreble", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
   layout.add(std::make_unique<juce::AudioParameterFloat>(
