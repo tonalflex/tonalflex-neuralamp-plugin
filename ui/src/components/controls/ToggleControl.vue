@@ -72,6 +72,9 @@ function toggle() {
   background-repeat: no-repeat;
   background-size: 100% auto;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  outline: none;
 }
 
 /* Fallback checkbox input */
@@ -85,8 +88,6 @@ function toggle() {
 .value-text {
   font-size: 0.875rem;
   font-weight: 600;
-  color: limegreen;
-  text-shadow: 0 0 2px black, 0 0 2px black;
   text-align: center;
 }
 
@@ -96,7 +97,6 @@ function toggle() {
   height: 30px;
   font-size: 0.75rem;
   font-weight: 500;
-  color: limegreen;
   text-align:center;
 }
 </style>

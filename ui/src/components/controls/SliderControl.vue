@@ -117,7 +117,6 @@ function onInput(e: Event) {
 .value-text {
   font-size: 0.875rem; /* text-sm */
   font-weight: 600;
-  color: limegreen;
   text-align: center;
 }
 
@@ -125,7 +124,6 @@ function onInput(e: Event) {
 .label-text {
   font-size: 0.75rem; /* text-xs to sm */
   font-weight: 500;
-  color: limegreen;
   text-align: center;
 }
 </style>
