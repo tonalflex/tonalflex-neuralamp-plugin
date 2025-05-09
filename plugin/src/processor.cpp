@@ -95,7 +95,7 @@ const std::vector<juce::String>& NeuralAmpProcessor::getIrPaths() const {
 
 void NeuralAmpProcessor::initModelNamesAndPaths() {
   if (!modelPathsInitialized) {
-    juce::File namDir("/home/rekz/Documents/NAM");
+    juce::File namDir(NamFolder);
     modelNames = getSortedNamModelNames(namDir, modelPathsByIndex);
     modelPathsInitialized = true;
     DBG("Initialized with " << modelNames.size() << " Nam choices");
@@ -104,7 +104,7 @@ void NeuralAmpProcessor::initModelNamesAndPaths() {
 
 void NeuralAmpProcessor::initIrNamesAndPaths() {
   if (!irPathsInitialized) {
-    juce::File irDir("/home/rekz/Documents/IR");
+    juce::File irDir(IrFolder);
     irNames = getSortedIrNames(irDir, irPathsByIndex);
     irPathsInitialized = true;
   }

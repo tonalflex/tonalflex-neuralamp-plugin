@@ -66,6 +66,10 @@ public:
   bool isIrLoaded() const { return irLoaded; }
 
 private:
+  // Path to NAM and IR folder
+  static constexpr const char* NamFolder = "/home/mind/NAM";
+  static constexpr const char* IrFolder = "/home/mind/IR";
+
   juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
   static void initModelNamesAndPaths();
