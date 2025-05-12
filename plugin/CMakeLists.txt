@@ -81,7 +81,6 @@ target_link_libraries(${PROJECT_NAME}
         juce::juce_audio_processors
         juce::juce_gui_basics
         juce::juce_gui_extra
-        #stdc++fs  # For GCC with libstdc++ / comment out on macOS
         NAM
     PUBLIC
         juce::juce_recommended_config_flags
