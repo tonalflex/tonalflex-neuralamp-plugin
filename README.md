@@ -65,6 +65,15 @@ Alternatively, you can automate this step inside a wrapper script or CI pipeline
 
 If you want to build the plugin for desktop, use:
 
+### 🪟 Windows Requirements
+
+Before building the plugin on Windows, install the WebView2 SDK:
+
+```powershell
+# powershell
+./script/install-webview2.ps1
+```
+
 ```sh
 # Fetch NeuralAmpModelerCore submodule
 git submodule update --init --recursive
