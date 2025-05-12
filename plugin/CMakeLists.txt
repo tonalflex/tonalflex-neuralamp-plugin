@@ -17,6 +17,11 @@ if (NOT HEADLESS)
     # list(APPEND _plugin_formats "AAX")        # Add AAX (Avid) format
     set(VST3_MANIFEST TRUE)                     # Create moduleinfo.json for VST3
     add_compile_definitions(HEADLESS=0)
+    if (WIN32)
+        set(NEEDS_WEBVIEW2_VALUE TRUE)
+    else()
+        set(NEEDS_WEBVIEW2_VALUE FALSE)
+    endif()
 else()
     set(JUCE_WEB_BROWSER_VALUE 0)               # No Webview UI for Embedded
     set(NEEDS_WEB_BROWSER_VALUE FALSE)          # disable, need browser for webview on linux
@@ -40,6 +45,7 @@ juce_add_plugin(${PROJECT_NAME}
     PRODUCT_NAME ${PROJECT_NAME}
     NEEDS_WEB_BROWSER ${NEEDS_WEB_BROWSER_VALUE}
     VST3_AUTO_MANIFEST ${VST3_MANIFEST}
+    NEEDS_WEBVIEW2 ${NEEDS_WEBVIEW2_VALUE}
 )
 
 target_sources(${PROJECT_NAME}
@@ -75,7 +81,6 @@ target_link_libraries(${PROJECT_NAME}
         juce::juce_audio_processors
         juce::juce_gui_basics
         juce::juce_gui_extra
-        stdc++fs  # For GCC with libstdc++ / comment out on macOS
         NAM
     PUBLIC
         juce::juce_recommended_config_flags
@@ -111,12 +116,18 @@ target_compile_definitions(${PROJECT_NAME}
         JUCE_VST3_CAN_REPLACE_VST2=0
 )
 
-# Treat all warnings as errors
-if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
-else()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+if (WIN32 AND NOT HEADLESS)
+    target_compile_definitions(${PROJECT_NAME}
+        PUBLIC JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1  # This will enable WebView2 as the WebView backend on Windows
+    )
 endif()
+
+# Treat all warnings as errors
+#if (MSVC)
+#    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+#else()
+#    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+#endif()
 
 # Visual Studio Only
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/..) 
