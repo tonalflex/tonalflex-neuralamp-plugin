@@ -21,8 +21,6 @@ const emit = defineEmits<{
 
 <style scoped>
 .juce-combobox {
-  position: relative;
-  width: 100%;
   cursor: pointer;
   user-select: none;
   outline: none;
@@ -51,6 +49,6 @@ const emit = defineEmits<{
 
 .arrow {
   font-size: 1.0rem;
-  margin-left: 0.5em;
+  padding-left: 0.5em;
 }
 </style>

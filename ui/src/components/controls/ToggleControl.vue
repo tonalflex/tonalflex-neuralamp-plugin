@@ -68,7 +68,6 @@ function toggle() {
 <style scoped>
 .juce-toggle {
   display: flex;
-  min-height: 100px;
   flex-direction: column;
   align-items: center;
   gap: 8px;
