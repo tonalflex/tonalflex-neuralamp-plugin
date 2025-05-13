@@ -57,9 +57,6 @@
             <SliderControl label="OUTPUT" v-model="outputLevel" :knobImage="greenKnob" :frames="89"/>
           </div>
           <div class="divider"></div>
-          <div class="section-5">
-            <img :src="neuralamp" width="100%" />
-          </div>
         </div>
       </div>
     </div>
@@ -75,7 +72,6 @@ import { useParameter } from "@composables/useParameter";
 import { useComboBoxParameter } from "@composables/useComboBoxParameter";
 import { useFunction } from "@composables/useFunction";
 import bg from "@/assets/NeuralampBG.png?inline";
-import neuralamp from "@/assets/Neuralamp.png?inline";
 import greenKnob from "@/assets/greenKNOB.png?inline"
 import metalSwitch from "@/assets/switch_metal.png?inline"
 import greenLed from "@/assets/green_led.png?inline"
@@ -254,13 +250,6 @@ onMounted(() => {
   margin-bottom: 10px;
   overflow: hidden;
   user-select: none;
-}
-
-.section-5{
-  width: 100%;
-  min-height: 100px;
-  display: flex;
-  flex: 1;
 }
 
 .divider{
