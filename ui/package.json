@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "vite",
     "build": "cross-env BUILD_TARGET=juce vue-tsc -b && vite build",
-     "build:npm": "cross-env ROLLUP_USE_WASM=true BUILD_TARGET=lib vue-tsc -b && vite build && npx vue-tsc --project tsconfig.build.npm.json",
+     "build:npm": "BUILD_TARGET=lib bash -c 'vue-tsc -b && vite build && npx vue-tsc --project tsconfig.build.npm.json'",
     "preview": "vite preview"
   },
   "dependencies": {
