@@ -23,7 +23,6 @@ const emit = defineEmits<{
 .juce-combobox {
   position: relative;
   width: 100%;
-  min-height: 25px;
   cursor: pointer;
   user-select: none;
   outline: none;

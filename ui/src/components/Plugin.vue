@@ -132,7 +132,6 @@ onMounted(() => {
 <style scoped>
 .plugin-container {
   width: 100%;
-  min-width: 285px;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -160,18 +159,16 @@ onMounted(() => {
 }
 
 .control-panel{
-  position: relative;
   display: flex;
   flex-direction: column;
   width:100%;
   height:100%;
   background: linear-gradient(to bottom, #444, #222);
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
-  overflow: auto;
+  overflow: hidden;
 }
 
 .section-1 {
-  position:relative;
   min-height: 40px;
   width:100%;
   display:flex;
@@ -237,19 +234,19 @@ onMounted(() => {
 
 /* Bottom section */
 .section-3 {
-  width: 98%;
+  width: 100%;
   min-height: 120px;
   display: flex;
   justify-content: center;
   gap: 2%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   overflow: hidden;
   user-select: none;
 }
 
 .section-4{
-  width: 98%;
+  width: 100%;
   min-height: 130px;
   display: flex;
   justify-content: center;
