@@ -1,8 +1,6 @@
 <template>
   <div class="plugin-container" :style="{ backgroundImage: `url(${bg})` }">
-    <div class="left-spacer"></div>
     <div class="main-section">
-      <div class="top-spacer"></div>
       <div class="control-panel">
         <div class="section-1">
           <div class="combobox-section">
@@ -57,6 +55,7 @@
             <SliderControl label="OUTPUT" v-model="outputLevel" :knobImage="greenKnob" :frames="89"/>
           </div>
           <div class="divider"></div>
+          <div class="section-5" :style="{ backgroundImage: `url(${namImg})` }"></div>
         </div>
       </div>
     </div>
@@ -72,6 +71,7 @@ import { useParameter } from "@composables/useParameter";
 import { useComboBoxParameter } from "@composables/useComboBoxParameter";
 import { useFunction } from "@composables/useFunction";
 import bg from "@/assets/NeuralampBG.png?inline";
+import namImg from "@/assets/Neuralamp.png"
 import greenKnob from "@/assets/greenKNOB.png?inline"
 import metalSwitch from "@/assets/switch_metal.png?inline"
 import greenLed from "@/assets/green_led.png?inline"
@@ -128,29 +128,23 @@ onMounted(() => {
 <style scoped>
 .plugin-container {
   width: 100%;
-  height: 100%;
+  max-width: 100%;
+  height: 625px;
   display: flex;
+  flex-direction: column;
+  background-image: url('@/assets/NeuralampBG.png');
   background-size: 100% 100%;
-  background-repeat: no-repeat;
   background-position: top left;
+  padding: 2% 2% 3% 2%; /* top, right, bottom, left */
+  box-sizing: border-box;
+  overflow: hidden;
   color: limegreen;
   text-shadow: 0 0 2px rgb(44, 44, 44), 0 0 2px rgb(54, 54, 54);
-  overflow: hidden;
-}
-
-.left-spacer{
-  width: 2%;
-  height: 100%;
 }
 
 .main-section{
-  width:96%;
-  height:96%;
-}
-
-.top-spacer{
-  width: 98%;
-  height: 2%;
+  width:100%;
+  height:100%;
 }
 
 .control-panel{
@@ -172,7 +166,7 @@ onMounted(() => {
 
 .combobox-section{
   width:100%;
-  height: 10%;
+  height: 40px;
   display: flex;
   flex-direction: row;
 }
@@ -187,9 +181,7 @@ onMounted(() => {
 
 .comboList-section {
   width: 100%;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+  min-height: 100%;
   background: rgb(34, 34, 34);
   color: limegreen;
   font-size: 0.7rem;
@@ -250,6 +242,12 @@ onMounted(() => {
   margin-bottom: 10px;
   overflow: hidden;
   user-select: none;
+}
+
+.section-5{
+  width: 100%;
+  height: 120px;
+  background-size: 100% 100%;
 }
 
 .divider{
