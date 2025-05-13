@@ -115,14 +115,18 @@ function onInput(e: Event) {
 
 /* Value text above knob */
 .value-text {
-  font-size: 0.875rem; /* text-sm */
+  
+  font-size: 0.65rem; /* text-sm */
   font-weight: 600;
   text-align: center;
+  border-radius: 4px;
+  padding: 3px;
+  background-color: rgb(36, 36, 36);
 }
 
 /* Label text under knob */
 .label-text {
-  font-size: 0.75rem; /* text-xs to sm */
+  font-size: 0.65rem; /* text-xs to sm */
   font-weight: 500;
   text-align: center;
 }

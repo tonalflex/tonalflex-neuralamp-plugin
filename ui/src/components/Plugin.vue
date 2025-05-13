@@ -29,6 +29,7 @@
             v-for="(option, index) in dropdownOptions"
             :key="index"
             class="dropdown-option"
+            :class="{ selected: isOptionSelected(index) }"
             @click="selectFromDropdown(index)"
           >
             {{ option }}
@@ -43,11 +44,11 @@
           </div>
           <div class="divider"></div>
           <div class="section-3">
-            <ToggleControl label="EQ" v-model="eqToggle" :toggleImage="metalSwitch" :frames="2"/>
-            <ToggleControl label="IR" v-model="irToggle" :toggleImage="metalSwitch" :frames="2"/>
-            <ToggleControl label="Gate" v-model="noiseGateToggle" :toggleImage="metalSwitch" :frames="2"/>
-            <ToggleControl label="Normalize NAM" v-model="normalizeNamOutput" :toggleImage="metalSwitch" :frames="2"/>
-            <ToggleControl label="Normalize IR" v-model="normalizeIrOutput" :toggleImage="metalSwitch" :frames="2"/>
+            <ToggleControl label="EQ" v-model="eqToggle" :toggleImage="metalSwitch" :ledImage="greenLed" :frames="2"/>
+            <ToggleControl label="IR" v-model="irToggle" :toggleImage="metalSwitch" :ledImage="greenLed" :frames="2"/>
+            <ToggleControl label="Gate" v-model="noiseGateToggle" :toggleImage="metalSwitch" :ledImage="greenLed" :frames="2"/>
+            <ToggleControl label="Normalize NAM" v-model="normalizeNamOutput" :toggleImage="metalSwitch" :ledImage="greenLed" :frames="2"/>
+            <ToggleControl label="Normalize IR" v-model="normalizeIrOutput" :toggleImage="metalSwitch" :ledImage="greenLed" :frames="2"/>
           </div>
           <div class="divider"></div>
           <div class="section-4">
@@ -77,6 +78,7 @@ import bg from "@/assets/NeuralampBG.png?inline";
 import neuralamp from "@/assets/Neuralamp.png?inline";
 import greenKnob from "@/assets/greenKNOB.png?inline"
 import metalSwitch from "@/assets/switch_metal.png?inline"
+import greenLed from "@/assets/green_led.png?inline"
 
 // Plugin Parameters
 const inputLevel = useParameter("inputLevel", "slider");
@@ -114,6 +116,12 @@ function selectFromDropdown(index: number) {
   dropdownOpen.value = null;
 }
 
+function isOptionSelected(index: number): boolean {
+  if (dropdownOpen.value === 'nam') return selectedNamModel.value.value === index;
+  if (dropdownOpen.value === 'ir') return selectedIR.value.value === index;
+  return false;
+}
+
 onMounted(() => {
   modelChoices.invoke();
   irChoices.invoke();
@@ -124,6 +132,7 @@ onMounted(() => {
 <style scoped>
 .plugin-container {
   width: 100%;
+  min-width: 285px;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -158,11 +167,12 @@ onMounted(() => {
   height:100%;
   background: linear-gradient(to bottom, #444, #222);
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
+  overflow: auto;
 }
 
 .section-1 {
   position:relative;
+  min-height: 40px;
   width:100%;
   display:flex;
   flex-direction: column;
@@ -170,6 +180,7 @@ onMounted(() => {
 
 .combobox-section{
   width:100%;
+  height: 10%;
   display: flex;
   flex-direction: row;
 }
@@ -184,12 +195,12 @@ onMounted(() => {
 
 .comboList-section {
   width: 100%;
-  height: 100%;
   display: flex;
+  flex: 1;
   flex-direction: column;
   background: rgb(34, 34, 34);
   color: limegreen;
-  font-size: 1rem;
+  font-size: 0.7rem;
   overflow-y: auto;
 }
 
@@ -197,8 +208,12 @@ onMounted(() => {
   padding: 12px;
 }
 
+.dropdown-option.selected {
+  background-color: #313131;
+}
+
 .dropdown-option:hover {
-  background-color: #333;
+  background-color: #585858;
 }
 
 .below-section{
@@ -210,11 +225,12 @@ onMounted(() => {
 
 .section-2 {
   width: 100%;
+  min-height: 130px;
   display: flex;
   justify-content: center;
-  gap: 10%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  gap: 5%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   overflow: hidden;
   user-select: none;
 }
@@ -222,6 +238,19 @@ onMounted(() => {
 /* Bottom section */
 .section-3 {
   width: 98%;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.section-4{
+  width: 98%;
+  min-height: 130px;
   display: flex;
   justify-content: center;
   gap: 5%;
@@ -231,19 +260,9 @@ onMounted(() => {
   user-select: none;
 }
 
-.section-4{
-  width: 98%;
-  display: flex;
-  justify-content: center;
-  gap: 10%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  user-select: none;
-}
-
 .section-5{
   width: 100%;
+  min-height: 100px;
   display: flex;
   flex: 1;
 }

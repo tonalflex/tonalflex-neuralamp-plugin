@@ -1,9 +1,15 @@
 <template>
   <div class="juce-toggle">
-    <!-- Value text above -->
-    <span class="value-text">
-      {{ modelValue ? "On" : "Off" }}
-    </span>
+    <!-- LED sprite above toggle -->
+    <div
+      v-if="ledImage"
+      class="led-sprite"
+      :style="{
+        backgroundImage: `url('${ledImage}')`,
+        backgroundPosition: `0px ${!modelValue ? `-${ledFrameHeight}px` : '0px'}`,
+        backgroundSize: '100% auto'
+      }"
+    ></div>
 
     <!-- Toggle graphic -->
     <div
@@ -38,7 +44,8 @@
 const props = defineProps<{
   label: string;
   modelValue: boolean;
-  toggleImage?: string; 
+  toggleImage?: string;
+  ledImage?: string; 
 }>();
 
 const emit = defineEmits<{
@@ -46,6 +53,7 @@ const emit = defineEmits<{
 }>();
 
 const frameHeight = 50;
+const ledFrameHeight = 20;
 
 function onChange(e: Event) {
   const target = e.target as HTMLInputElement;
@@ -60,6 +68,7 @@ function toggle() {
 <style scoped>
 .juce-toggle {
   display: flex;
+  min-height: 100px;
   flex-direction: column;
   align-items: center;
   gap: 8px;
@@ -77,6 +86,13 @@ function toggle() {
   outline: none;
 }
 
+.led-sprite {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
 /* Fallback checkbox input */
 .toggle-input {
   width: 24px;
@@ -84,18 +100,10 @@ function toggle() {
   cursor: pointer;
 }
 
-/* Value text above toggle */
-.value-text {
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-align: center;
-}
-
 /* Label text under toggle */
 .label-text {
   width: 50px;
-  height: 30px;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 500;
   text-align:center;
 }
