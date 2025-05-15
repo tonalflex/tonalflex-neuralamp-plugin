@@ -6,7 +6,7 @@
       class="led-sprite"
       :style="{
         backgroundImage: `url('${ledImage}')`,
-        backgroundPosition: `0px ${!modelValue ? `-${ledFrameHeight}px` : '0px'}`,
+        backgroundPosition: `0px ${modelValue ? `-${ledFrameHeight}px` : '0px'}`,
         backgroundSize: '100% auto'
       }"
     ></div>
@@ -17,7 +17,7 @@
       class="toggle-sprite"
       :style="{
         backgroundImage: `url('${toggleImage}')`,
-        backgroundPosition: `0px ${modelValue ? `-${frameHeight}px` : '0px'}`,
+        backgroundPosition: `0px ${!modelValue ? `-${frameHeight}px` : '0px'}`,
         backgroundSize: `100% auto`
       }"
       @click="toggle"

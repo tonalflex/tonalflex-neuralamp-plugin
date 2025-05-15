@@ -59,8 +59,6 @@ public:
 
   int getCurrentModelIndex() const { return currentModelIndex; }
   int getCurrentIrIndex() const { return currentIrIndex; }
-  void setCurrentModelIndex(int index);
-  void setCurrentIrIndex(int index);
 
   bool isModelLoaded() const { return modelLoaded; }
   bool isIrLoaded() const { return irLoaded; }
