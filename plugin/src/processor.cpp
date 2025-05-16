@@ -125,46 +125,39 @@ NeuralAmpProcessor::NeuralAmpProcessor()
   normalizationGainSmoother.reset(48000, 0.05f);
   DBG("NeuralAmpProcessor constructed");
 }
-
 juce::AudioProcessorValueTreeState::ParameterLayout NeuralAmpProcessor::createParameterLayout() {
   initModelNamesAndPaths();
   initIrNamesAndPaths();
   juce::AudioProcessorValueTreeState::ParameterLayout layout;
-
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "inputLevel", "inputLevel", juce::NormalisableRange<float>(-20.0f, 20.0f, 0.1f), -14.0f));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "toneBass", "toneBass", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "toneMid", "toneMid", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "toneTreble", "toneTreble", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "outputLevel", "outputLevel", juce::NormalisableRange<float>(-40.0f, 40.0f, 0.1f), -4.0f));
+  layout.add(
+      std::make_unique<juce::AudioParameterFloat>("inputLevel", "inputLevel", 0.0f, 1.0f, 0.5f));
+  layout.add(
+      std::make_unique<juce::AudioParameterFloat>("toneBass", "toneBass", 0.01f, 10.0f, 5.0f));
+  layout.add(std::make_unique<juce::AudioParameterFloat>("toneMid", "toneMid", 0.01f, 10.0f, 5.0f));
+  layout.add(
+      std::make_unique<juce::AudioParameterFloat>("toneTreble", "toneTreble", 0.01f, 10.0f, 5.0f));
+  layout.add(
+      std::make_unique<juce::AudioParameterFloat>("outputLevel", "outputLevel", 0.0f, 1.0f, 0.5f));
   layout.add(
       std::make_unique<juce::AudioParameterBool>("noiseGateToggle", "noiseGateToggle", true));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "noiseGateThreshold", "noiseGateThreshold",
-      juce::NormalisableRange<float>(-100.0f, 0.0f, 0.1f), -80.0f));
+  layout.add(std::make_unique<juce::AudioParameterFloat>("noiseGateThreshold", "noiseGateThreshold",
+                                                         -100.0f, 0.0f, -80.0f));
   layout.add(std::make_unique<juce::AudioParameterBool>("eqToggle", "eqToggle", true));
   layout.add(std::make_unique<juce::AudioParameterBool>("irToggle", "irToggle", true));
   layout.add(
       std::make_unique<juce::AudioParameterBool>("normalizeNamOutput", "normalizeNamOutput", true));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "targetLoudness", "targetLoudness", juce::NormalisableRange<float>(-30.0f, -6.0f, 0.1f),
-      -18.0f));
+  layout.add(std::make_unique<juce::AudioParameterFloat>("targetLoudness", "targetLoudness", 0.0f,
+                                                         1.0f, 1.0f));
   layout.add(
       std::make_unique<juce::AudioParameterBool>("normalizeIrOutput", "normalizeIrOutput", true));
 
   juce::StringArray Namchoices = modelNames.isEmpty() ? juce::StringArray("No Model") : modelNames;
-  DBG("Total irChoices = " << Namchoices.size());
   layout.add(std::make_unique<juce::AudioParameterChoice>("selectedNamModel", "selectedNamModel",
                                                           Namchoices, 0));
+
   juce::StringArray irChoices = irNames.isEmpty() ? juce::StringArray("No IR") : irNames;
   layout.add(
       std::make_unique<juce::AudioParameterChoice>("selectedIR", "selectedIR", irChoices, 0));
-
-  DBG("Parameter layout created with " << Namchoices.size() << " model Namchoices");
   return layout;
 }
 
@@ -336,12 +329,16 @@ void NeuralAmpProcessor::updateCachedParameters() {
     cNoiseGateThreshold = ngThresh;
 
   int modelIndex = static_cast<int>(*parameters.getRawParameterValue("selectedNamModel"));
-  if (modelIndex != cSelectedNamModel)
+  if (modelIndex != cSelectedNamModel) {
     cSelectedNamModel = modelIndex;
+    loadNamFile(modelPathsByIndex[cSelectedNamModel]);
+  }
 
   int irIndex = static_cast<int>(*parameters.getRawParameterValue("selectedIR"));
-  if (irIndex != cSelectedIR)
+  if (irIndex != cSelectedIR) {
     cSelectedIR = irIndex;
+    loadIrFile(irPathsByIndex[cSelectedIR]);
+  }
 
   bool irToggle = parameters.getRawParameterValue("irToggle")->load() > 0.5f;
   if (irToggle != cIrToggle)
@@ -444,7 +441,7 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
     float modelLoudness = static_cast<float>(localDsp->GetLoudness());
     float targetLoudness = *parameters.getRawParameterValue("targetLoudness");
 
-    if (!std::isfinite(modelLoudness) || modelLoudness < -120.0f || modelLoudness > 0.0f) {
+    if (!std::isfinite(modelLoudness) || modelLoudness < 0.7f || modelLoudness > 0.8f) {
       DBG("Invalid model loudness: " << modelLoudness);
       modelLoudness = targetLoudness;
     }
@@ -477,7 +474,7 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
   // EQ
   if (cEqToggle) {
     auto bassCoeffs =
-        juce::dsp::IIR::Coefficients<float>::makeLowShelf(getSampleRate(), 100.0f, 1.0f, bassGain);
+        juce::dsp::IIR::Coefficients<float>::makeLowShelf(getSampleRate(), 250.0f, 1.0f, bassGain);
     auto midCoeffs = juce::dsp::IIR::Coefficients<float>::makePeakFilter(getSampleRate(), 1000.0f,
                                                                          1.0f, midGain);
     auto trebleCoeffs = juce::dsp::IIR::Coefficients<float>::makeHighShelf(getSampleRate(), 4000.0f,
