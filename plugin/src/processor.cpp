@@ -4,7 +4,9 @@
 #endif
 #include <cmath>
 
-// Static member initialization
+// ##############################
+// STORE NAM AND IR NAMES / PATHS
+// ##############################
 juce::StringArray NeuralAmpProcessor::modelNames;
 std::vector<juce::String> NeuralAmpProcessor::modelPathsByIndex;
 bool NeuralAmpProcessor::modelPathsInitialized = false;
@@ -13,7 +15,7 @@ juce::StringArray NeuralAmpProcessor::getSortedNamModelNames(
     const juce::File& namFolder,
     std::vector<juce::String>& modelPaths) {
   juce::StringArray modelNames;
-  modelNames.add("Select model...");
+  modelNames.add("Select NAM model...");
   modelPaths.push_back("");
 
   if (!namFolder.exists() || !namFolder.isDirectory()) {
@@ -52,7 +54,7 @@ bool NeuralAmpProcessor::irPathsInitialized = false;
 juce::StringArray NeuralAmpProcessor::getSortedIrNames(const juce::File& irFolder,
                                                        std::vector<juce::String>& irPaths) {
   juce::StringArray names;
-  names.add("Select IR...");
+  names.add("Select IR model...");
   irPaths.push_back("");
 
   if (!irFolder.exists() || !irFolder.isDirectory()) {
@@ -110,6 +112,9 @@ void NeuralAmpProcessor::initIrNamesAndPaths() {
   }
 }
 
+// ##############
+// MAIN PROCESSOR
+// ##############
 NeuralAmpProcessor::NeuralAmpProcessor()
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
@@ -123,48 +128,43 @@ NeuralAmpProcessor::NeuralAmpProcessor()
           0,
           juce::dsp::Oversampling<float>::filterHalfBandFIREquiripple)) {
   normalizationGainSmoother.reset(48000, 0.05f);
+  namLoaderThread = std::make_unique<NamLoaderThread>(*this);
+  irLoaderThread = std::make_unique<IrLoaderThread>(*this);
   DBG("NeuralAmpProcessor constructed");
 }
-
 juce::AudioProcessorValueTreeState::ParameterLayout NeuralAmpProcessor::createParameterLayout() {
   initModelNamesAndPaths();
   initIrNamesAndPaths();
   juce::AudioProcessorValueTreeState::ParameterLayout layout;
-
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "inputLevel", "inputLevel", juce::NormalisableRange<float>(-20.0f, 20.0f, 0.1f), -14.0f));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "toneBass", "toneBass", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "toneMid", "toneMid", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "toneTreble", "toneTreble", juce::NormalisableRange<float>(0.0f, 10.0f, 0.1f), 5.0f));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "outputLevel", "outputLevel", juce::NormalisableRange<float>(-40.0f, 40.0f, 0.1f), -4.0f));
+  layout.add(
+      std::make_unique<juce::AudioParameterFloat>("inputLevel", "inputLevel", 0.0f, 1.0f, 0.5f));
+  layout.add(
+      std::make_unique<juce::AudioParameterFloat>("toneBass", "toneBass", 0.01f, 10.0f, 5.0f));
+  layout.add(std::make_unique<juce::AudioParameterFloat>("toneMid", "toneMid", 0.01f, 10.0f, 5.0f));
+  layout.add(
+      std::make_unique<juce::AudioParameterFloat>("toneTreble", "toneTreble", 0.01f, 10.0f, 5.0f));
+  layout.add(
+      std::make_unique<juce::AudioParameterFloat>("outputLevel", "outputLevel", 0.0f, 1.0f, 0.5f));
   layout.add(
       std::make_unique<juce::AudioParameterBool>("noiseGateToggle", "noiseGateToggle", true));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "noiseGateThreshold", "noiseGateThreshold",
-      juce::NormalisableRange<float>(-100.0f, 0.0f, 0.1f), -80.0f));
+  layout.add(std::make_unique<juce::AudioParameterFloat>("noiseGateThreshold", "noiseGateThreshold",
+                                                         -100.0f, 0.0f, -80.0f));
   layout.add(std::make_unique<juce::AudioParameterBool>("eqToggle", "eqToggle", true));
   layout.add(std::make_unique<juce::AudioParameterBool>("irToggle", "irToggle", true));
   layout.add(
       std::make_unique<juce::AudioParameterBool>("normalizeNamOutput", "normalizeNamOutput", true));
-  layout.add(std::make_unique<juce::AudioParameterFloat>(
-      "targetLoudness", "targetLoudness", juce::NormalisableRange<float>(-30.0f, -6.0f, 0.1f),
-      -18.0f));
+  layout.add(std::make_unique<juce::AudioParameterFloat>("targetLoudness", "targetLoudness", -60.0f,
+                                                         0.0f, -18.0f));
   layout.add(
       std::make_unique<juce::AudioParameterBool>("normalizeIrOutput", "normalizeIrOutput", true));
 
   juce::StringArray Namchoices = modelNames.isEmpty() ? juce::StringArray("No Model") : modelNames;
-  DBG("Total irChoices = " << Namchoices.size());
   layout.add(std::make_unique<juce::AudioParameterChoice>("selectedNamModel", "selectedNamModel",
                                                           Namchoices, 0));
+
   juce::StringArray irChoices = irNames.isEmpty() ? juce::StringArray("No IR") : irNames;
   layout.add(
       std::make_unique<juce::AudioParameterChoice>("selectedIR", "selectedIR", irChoices, 0));
-
-  DBG("Parameter layout created with " << Namchoices.size() << " model Namchoices");
   return layout;
 }
 
@@ -173,6 +173,9 @@ NeuralAmpProcessor::~NeuralAmpProcessor() {
   juce::Logger::writeToLog("[Processor] Destructor called");
 }
 
+// #############
+// JUCE SETTINGS
+// #############
 const juce::String NeuralAmpProcessor::getName() const {
   return "NeuralAmp";
 }
@@ -207,9 +210,26 @@ void NeuralAmpProcessor::changeProgramName(int index, const juce::String& newNam
   juce::ignoreUnused(index, newName);
 }
 
+void NeuralAmpProcessor::getStateInformation(juce::MemoryBlock& destData) {
+  juce::ignoreUnused(destData);
+}
+
+void NeuralAmpProcessor::setStateInformation(const void* data, int sizeInBytes) {
+  juce::ignoreUnused(data, sizeInBytes);
+}
+
+// #############################
+// PREPARATIONS BEFORE RT THREAD
+// #############################
 void NeuralAmpProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
+  if (namLoaderThread)
+    namLoaderThread->startThread();
+  if (irLoaderThread)
+    irLoaderThread->startThread();
+  resampleInputBuffer.resize(samplesPerBlock + 16);
+  resampleOutputBuffer.resize(samplesPerBlock + 16);
   modelSampleRate = sampleRate;  // Set to DAW's sample rate
-  bypassResampling = true;       // Default to bypass unless model requires specific rate
+  bypassResampling = false;      // Default to bypass unless model requires specific rate
   DBG("Preparing to play: sampleRate=" << sampleRate << ", samplesPerBlock=" << samplesPerBlock);
   DBG("Model sample rate set to: " << modelSampleRate);
 
@@ -280,8 +300,22 @@ void NeuralAmpProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   setLatencySamples(bypassResampling ? 0 : static_cast<int>(oversampler->getLatencyInSamples()));
 }
 
+// #################
+// RELEASE RESOURCES
+// #################
 void NeuralAmpProcessor::releaseResources() {
   juce::Logger::writeToLog("[Processor] releaseResources() called");
+
+  if (namLoaderThread) {
+    namLoaderThread->signalThreadShouldExit();
+    namLoaderThread->stopThread(500);
+  }
+
+  if (irLoaderThread) {
+    irLoaderThread->signalThreadShouldExit();
+    irLoaderThread->stopThread(500);
+  }
+
   bassFilter.reset();
   midFilter.reset();
   trebleFilter.reset();
@@ -300,6 +334,9 @@ bool NeuralAmpProcessor::isBusesLayoutSupported(const BusesLayout& layouts) cons
   return true;
 }
 
+// ####################
+// UPDATE CACHED PARAMS
+// ####################
 void NeuralAmpProcessor::updateCachedParameters() {
   constexpr float epsilon = 1e-5f;
 
@@ -336,12 +373,30 @@ void NeuralAmpProcessor::updateCachedParameters() {
     cNoiseGateThreshold = ngThresh;
 
   int modelIndex = static_cast<int>(*parameters.getRawParameterValue("selectedNamModel"));
-  if (modelIndex != cSelectedNamModel)
+  if (modelIndex != cSelectedNamModel) {
     cSelectedNamModel = modelIndex;
+    juce::String modelPath;
+    if (modelIndex == 0) {
+      modelPath = "";
+    } else {
+      modelPath = modelPathsByIndex[cSelectedNamModel];
+    }
+
+    namLoaderThread->requestLoadModel(modelPath);
+  }
 
   int irIndex = static_cast<int>(*parameters.getRawParameterValue("selectedIR"));
-  if (irIndex != cSelectedIR)
+  if (irIndex != cSelectedIR) {
     cSelectedIR = irIndex;
+    juce::String irPath;
+    if (irIndex == 0) {
+      irPath = "";
+    } else {
+      irPath = irPathsByIndex[cSelectedIR];
+    }
+
+    irLoaderThread->requestLoadIr(irPath);
+  }
 
   bool irToggle = parameters.getRawParameterValue("irToggle")->load() > 0.5f;
   if (irToggle != cIrToggle)
@@ -360,6 +415,9 @@ void NeuralAmpProcessor::updateCachedParameters() {
     cTargetLoudness = tgtLoud;
 }
 
+// ################
+// RT PROCESS BLOCK
+// ################
 void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midi) {
   juce::ScopedNoDenormals noDenormals;
   juce::ignoreUnused(midi);
@@ -379,7 +437,9 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
   float midGain = cToneMid / 5.0f;
   float trebleGain = cToneTreble / 5.0f;
 
+  // ################
   // Apply input gain
+  // ################
   for (size_t channel = 0; channel < numChannels; ++channel) {
     auto* channelData = buffer.getWritePointer(static_cast<int>(channel));
     for (int i = 0; i < numSamples; ++i) {
@@ -387,7 +447,9 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
     }
   }
 
+  // ##########
   // Noise gate
+  // ##########
   if (cNoiseGateToggle) {
     for (size_t channel = 0; channel < numChannels; ++channel) {
       auto* channelData = buffer.getWritePointer(static_cast<int>(channel));
@@ -398,58 +460,114 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
     }
   }
 
-  // Lock guard
+  // ##############
+  // NAM processing
+  // ##############
   std::shared_ptr<nam::DSP> localDsp;
   {
     std::lock_guard<std::mutex> lock(dspMutex);
     localDsp = dsp;
   }
 
-  // NAM Processing
   if (modelLoaded.load() && localDsp) {
     try {
-      // Process directly at DAW's sample rate
-      std::vector<double> input(static_cast<size_t>(numSamples));
-      for (size_t i = 0; i < static_cast<size_t>(numSamples); ++i) {
+      std::vector<double>* inputData = nullptr;
+      std::vector<double>* outputData = nullptr;
+      size_t inputFrames = static_cast<size_t>(numSamples);
+
+      // Prepare input
+      for (size_t i = 0; i < inputFrames; ++i) {
         float l = buffer.getSample(0, static_cast<int>(i));
         float r = (numChannels > 1) ? buffer.getSample(1, static_cast<int>(i)) : l;
-        input[i] = 0.5 * (l + r);
+        resampleInputBuffer[i] = 0.5f * (l + r);
       }
 
-      std::vector<double> output(static_cast<size_t>(numSamples));
-      localDsp->process(input.data(), output.data(), static_cast<size_t>(numSamples));
-
-      for (size_t i = 0; i < static_cast<size_t>(numSamples); ++i) {
-        float s = static_cast<float>(output[i]);
-        buffer.setSample(0, static_cast<int>(i), s);
-        if (numChannels > 1)
-          buffer.setSample(1, static_cast<int>(i), s);
+      // Resample if needed
+      if (!bypassResampling) {
+        const double ratio = modelSampleRate / getSampleRate();
+        const int upsampled = upsampler.process(ratio, resampleInputBuffer.data(),
+                                                resampleInputBuffer.data(), numSamples);
+        inputData = new std::vector<double>(upsampled);
+        for (int i = 0; i < upsampled; ++i)
+          (*inputData)[i] = resampleInputBuffer[i];
+        outputData = new std::vector<double>(upsampled);
+      } else {
+        inputData = new std::vector<double>(inputFrames);
+        outputData = new std::vector<double>(inputFrames);
+        for (size_t i = 0; i < inputFrames; ++i)
+          (*inputData)[i] = resampleInputBuffer[i];
       }
+
+      // Process
+      localDsp->process(inputData->data(), outputData->data(), outputData->size());
+
+      // Downsample if needed
+      if (!bypassResampling) {
+        const double ratio = getSampleRate() / modelSampleRate;
+        const int downsampled =
+            downsampler.process(ratio, reinterpret_cast<const float*>(outputData->data()),
+                                resampleOutputBuffer.data(), outputData->size());
+        for (int i = 0; i < downsampled; ++i) {
+          float s = resampleOutputBuffer[i];
+          buffer.setSample(0, i, s);
+          if (numChannels > 1)
+            buffer.setSample(1, i, s);
+        }
+      } else {
+        for (int i = 0; i < numSamples; ++i) {
+          float s = static_cast<float>((*outputData)[i]);
+          buffer.setSample(0, i, s);
+          if (numChannels > 1)
+            buffer.setSample(1, i, s);
+        }
+      }
+
+      delete inputData;
+      delete outputData;
     } catch (const std::exception& e) {
       DBG("Error in DSP processing: " << e.what());
       buffer.clear();
-      return;
     }
   }
 
+  // #############
+  // IR processing
+  // #############
+  if (cIrToggle && irLoaded) {
+    juce::dsp::AudioBlock<float> irBlock(buffer);
+    auto leftBlock = irBlock.getSingleChannelBlock(0);
+    auto rightBlock = numChannels > 1 ? irBlock.getSingleChannelBlock(1) : leftBlock;
+    irConvolverLeft.process(juce::dsp::ProcessContextReplacing<float>(leftBlock));
+    if (numChannels > 1) {
+      irConvolverRight.process(juce::dsp::ProcessContextReplacing<float>(rightBlock));
+    }
+  }
+
+  // ##########
   // DC blocker
+  // ##########
   juce::dsp::AudioBlock<float> block(buffer);
   juce::dsp::ProcessContextReplacing<float> context(block);
   dcBlockerLeft.process(context);
   if (numChannels > 1)
     dcBlockerRight.process(context);
 
-  // Normalizer
+  // Normalizer (in dB domain)
   if (cNormalizeNamOutput == 1 && localDsp) {
-    float modelLoudness = static_cast<float>(localDsp->GetLoudness());
-    float targetLoudness = *parameters.getRawParameterValue("targetLoudness");
+    float modelLoudnessDb = static_cast<float>(localDsp->GetLoudness());
+    float targetLoudnessDb = *parameters.getRawParameterValue("targetLoudness");
 
-    if (!std::isfinite(modelLoudness) || modelLoudness < -120.0f || modelLoudness > 0.0f) {
-      DBG("Invalid model loudness: " << modelLoudness);
-      modelLoudness = targetLoudness;
+    // Validate loudness range
+    if (!std::isfinite(modelLoudnessDb) || modelLoudnessDb < -100.0f || modelLoudnessDb > 0.0f) {
+      DBG("Invalid model loudness: " << modelLoudnessDb);
+      modelLoudnessDb = targetLoudnessDb;
     }
 
-    float gainAdjustmentDb = targetLoudness - modelLoudness;
+    float gainAdjustmentDb = targetLoudnessDb - modelLoudnessDb;
+
+    // Clamp to sane range (optional but safe)
+    gainAdjustmentDb = juce::jlimit(-12.0f, 6.0f, gainAdjustmentDb);
+
     float targetGain = juce::Decibels::decibelsToGain(gainAdjustmentDb);
     normalizationGainSmoother.setTargetValue(targetGain);
 
@@ -462,22 +580,12 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
     }
   }
 
-  // IR processing
-  bool irToggleOn = *parameters.getRawParameterValue("irToggle") > 0.5f;
-  if (irToggleOn && irLoaded) {
-    juce::dsp::AudioBlock<float> irBlock(buffer);
-    auto leftBlock = irBlock.getSingleChannelBlock(0);
-    auto rightBlock = numChannels > 1 ? irBlock.getSingleChannelBlock(1) : leftBlock;
-    irConvolverLeft.process(juce::dsp::ProcessContextReplacing<float>(leftBlock));
-    if (numChannels > 1) {
-      irConvolverRight.process(juce::dsp::ProcessContextReplacing<float>(rightBlock));
-    }
-  }
-
-  // EQ
+  // #############
+  // EQ Processing
+  // #############
   if (cEqToggle) {
     auto bassCoeffs =
-        juce::dsp::IIR::Coefficients<float>::makeLowShelf(getSampleRate(), 100.0f, 1.0f, bassGain);
+        juce::dsp::IIR::Coefficients<float>::makeLowShelf(getSampleRate(), 250.0f, 1.0f, bassGain);
     auto midCoeffs = juce::dsp::IIR::Coefficients<float>::makePeakFilter(getSampleRate(), 1000.0f,
                                                                          1.0f, midGain);
     auto trebleCoeffs = juce::dsp::IIR::Coefficients<float>::makeHighShelf(getSampleRate(), 4000.0f,
@@ -494,7 +602,9 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
     trebleFilter.process(eqContext);
   }
 
+  // #################
   // Apply output gain
+  // #################
   for (size_t channel = 0; channel < numChannels; ++channel) {
     auto* channelData = buffer.getWritePointer(static_cast<int>(channel));
     for (int i = 0; i < numSamples; ++i) {
@@ -503,10 +613,16 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
   }
 }
 
+// ##################
+// ENABLE EDITOR / UI
+// ##################
 bool NeuralAmpProcessor::hasEditor() const {
   return true;
 }
 
+// ##############
+// CREATE EDITOR
+// ##############
 juce::AudioProcessorEditor* NeuralAmpProcessor::createEditor() {
 #if !HEADLESS
   return new NeuralAmpEditor(*this);
@@ -515,30 +631,51 @@ juce::AudioProcessorEditor* NeuralAmpProcessor::createEditor() {
 #endif
 }
 
-void NeuralAmpProcessor::getStateInformation(juce::MemoryBlock& destData) {
-  juce::ignoreUnused(destData);
-}
-
-void NeuralAmpProcessor::setStateInformation(const void* data, int sizeInBytes) {
-  juce::ignoreUnused(data, sizeInBytes);
-}
-
+// ##############
+// LOAD NAM MODEL
+// ##############
 void NeuralAmpProcessor::loadNamFile(const juce::String& filePath) {
+  DBG("NAM file path: " << filePath);
+  if (filePath.trim().isEmpty()) {
+    DBG("No NAM model selected — clearing DSP.");
+    std::lock_guard<std::mutex> lock(dspMutex);
+    dsp = nullptr;
+    modelLoaded.store(false);
+    return;
+  }
+
   juce::File file(filePath);
   if (!file.existsAsFile()) {
     DBG("Error: File does not exist: " << filePath);
     modelLoaded.store(false);
     return;
   }
+
   DBG("Loading NAM model from: " << filePath);
+
   try {
     std::unique_ptr<nam::DSP> rawDsp = nam::get_dsp(filePath.toStdString());
+
     if (rawDsp) {
+      const double modelRate = rawDsp->GetExpectedSampleRate();
+      const double hostRate = getSampleRate();
+
+      if (std::abs(modelRate - hostRate) > 1.0) {
+        DBG("Resampling required: Model SR = " << modelRate << ", Host SR = " << hostRate);
+        bypassResampling = false;
+      } else {
+        DBG("No resampling needed.");
+        bypassResampling = true;
+      }
+
+      modelSampleRate = modelRate;
       rawDsp->Reset(modelSampleRate, getBlockSize());
+
       {
         std::lock_guard<std::mutex> lock(dspMutex);
         dsp = std::move(rawDsp);
       }
+
       modelLoaded.store(true);
       DBG("Model loaded successfully: " << filePath);
     } else {
@@ -555,7 +692,21 @@ void NeuralAmpProcessor::loadNamFile(const juce::String& filePath) {
   }
 }
 
-void NeuralAmpProcessor::loadIrFile(const juce::File& irFile) {
+// #############
+// LOAD IR MODEL
+// #############
+void NeuralAmpProcessor::loadIrFile(const juce::String& filePath) {
+  DBG("IR file path: " << filePath);
+  if (filePath.trim().isEmpty()) {
+    DBG("IR selection is 'None' – clearing IR.");
+    const juce::ScopedLock lock(irLoadLock);
+    irConvolverLeft.reset();
+    irConvolverRight.reset();
+    irLoaded = false;
+    return;
+  }
+
+  juce::File irFile(filePath);
   if (!irFile.existsAsFile() || !irFile.hasFileExtension(".wav")) {
     DBG("Invalid IR file: " << irFile.getFullPathName());
     irLoaded = false;
@@ -572,18 +723,11 @@ void NeuralAmpProcessor::loadIrFile(const juce::File& irFile) {
     return;
   }
 
-  if (std::abs(reader->sampleRate - getSampleRate()) > 0.1) {
-    DBG("IR sample rate (" << reader->sampleRate << ") does not match plugin sample rate ("
-                           << getSampleRate() << ")");
-    irLoaded = false;
-    return;
-  }
-
   const juce::ScopedLock lock(irLoadLock);
   DBG("Loading IR file: " << irFile.getFullPathName());
 
   try {
-    bool normalize = *parameters.getRawParameterValue("normalizeIrOutput") > 0.5f;
+    bool normalize = cNormalizeIrOutput;
     const size_t maxIrLength = 32768;  // Reduced for RPi4 memory efficiency
 
     irConvolverLeft.loadImpulseResponse(
@@ -604,4 +748,48 @@ void NeuralAmpProcessor::loadIrFile(const juce::File& irFile) {
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter() {
   return new NeuralAmpProcessor();
+}
+
+// #################################
+// BACKGROUND THREAD FOR NAM LOADING
+// #################################
+void NamLoaderThread::run() {
+  while (!threadShouldExit()) {
+    wait(-1);  // wait indefinitely for notify()
+
+    juce::String modelToLoad;
+    {
+      juce::ScopedLock lock(mutex);
+      if (!modelRequested)
+        continue;
+      modelToLoad = requestedModelPath;
+      modelRequested = false;
+    }
+
+    DBG("[Thread] Loading NAM model: " << modelToLoad);
+    this->processor.loadNamFile(modelToLoad);
+    DBG("[Thread] NAM Model load complete");
+  }
+}
+
+// ################################
+// BACKGROUND THREAD FOR IR LOADING
+// ################################
+void IrLoaderThread::run() {
+  while (!threadShouldExit()) {
+    wait(-1);  // wait indefinitely for notify()
+
+    juce::String modelToLoad;
+    {
+      juce::ScopedLock lock(mutex);
+      if (!modelRequested)
+        continue;
+      modelToLoad = requestedModelPath;
+      modelRequested = false;
+    }
+
+    DBG("[Thread] Loading IR model: " << modelToLoad);
+    this->processor.loadIrFile(modelToLoad);
+    DBG("[Thread] IR Model load complete");
+  }
 }

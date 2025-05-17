@@ -14,6 +14,48 @@
 #include "NAM/util.h"
 #include "NAM/wavenet.h"
 
+class NeuralAmpProcessor;
+
+class NamLoaderThread : public juce::Thread {
+public:
+  NamLoaderThread(NeuralAmpProcessor& owner) : juce::Thread("NamLoaderThread"), processor(owner) {}
+
+  void run() override;
+
+  void requestLoadModel(const juce::String& modelPath) {
+    juce::ScopedLock lock(mutex);
+    requestedModelPath = modelPath;
+    modelRequested = true;
+    notify();  // wakes thread
+  }
+
+private:
+  NeuralAmpProcessor& processor;
+  juce::String requestedModelPath;
+  bool modelRequested = false;
+  juce::CriticalSection mutex;
+};
+
+class IrLoaderThread : public juce::Thread {
+public:
+  IrLoaderThread(NeuralAmpProcessor& owner) : juce::Thread("IrLoaderThread"), processor(owner) {}
+
+  void run() override;
+
+  void requestLoadIr(const juce::String& modelPath) {
+    juce::ScopedLock lock(mutex);
+    requestedModelPath = modelPath;
+    modelRequested = true;
+    notify();  // wakes thread
+  }
+
+private:
+  NeuralAmpProcessor& processor;
+  juce::String requestedModelPath;
+  bool modelRequested = false;
+  juce::CriticalSection mutex;
+};
+
 class NeuralAmpProcessor : public juce::AudioProcessor {
 public:
   NeuralAmpProcessor();
@@ -50,7 +92,7 @@ public:
   juce::AudioProcessorValueTreeState& getParameters() { return parameters; }
 
   void loadNamFile(const juce::String& filePath);
-  void loadIrFile(const juce::File& irFile);
+  void loadIrFile(const juce::String& filePath);
 
   const juce::StringArray& getModelNames() const;
   const juce::StringArray& getIrNames() const;
@@ -65,8 +107,8 @@ public:
 
 private:
   // Path to NAM and IR folder
-  static constexpr const char* NamFolder = "/home/mind/NAM";
-  static constexpr const char* IrFolder = "/home/mind/IR";
+  static constexpr const char* NamFolder = "/home/rekz/Documents/NAM";
+  static constexpr const char* IrFolder = "/home/rekz/Documents/IR";
 
   juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
@@ -81,6 +123,9 @@ private:
   std::atomic<bool> modelLoaded{false};
   std::atomic<bool> irLoaded{false};
   std::atomic<bool> normalizeIr{true};
+  std::unique_ptr<NamLoaderThread> namLoaderThread;
+  std::unique_ptr<IrLoaderThread> irLoaderThread;
+  juce::AudioBuffer<float> tempMonoBuffer;
 
   // cache
   float cInputLevel;
@@ -131,6 +176,10 @@ private:
 
   std::unique_ptr<juce::dsp::Oversampling<float>> oversampler;
   juce::AudioBuffer<float> oversampleBuffer;
+  std::vector<float> resampleInputBuffer;
+  std::vector<float> resampleOutputBuffer;
+  juce::LagrangeInterpolator upsampler;
+  juce::LagrangeInterpolator downsampler;
   double modelSampleRate = 48000.0;  // Default, updated dynamically in prepareToPlay
   bool bypassResampling = true;      // Default to bypass unless model requires specific rate
 

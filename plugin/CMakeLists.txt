@@ -85,7 +85,7 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_warning_flags
-        juce::juce_recommended_lto_flags # Must be disabled for ElkOS build
+        #juce::juce_recommended_lto_flags # Must be disabled for ElkOS build
 )
 
 if (NOT HEADLESS)

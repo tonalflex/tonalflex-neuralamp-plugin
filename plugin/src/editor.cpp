@@ -190,7 +190,12 @@ NeuralAmpEditor::NeuralAmpEditor(NeuralAmpProcessor& p) : AudioProcessorEditor(&
   */
 }
 
-NeuralAmpEditor::~NeuralAmpEditor() {}
+NeuralAmpEditor::~NeuralAmpEditor() {
+  if (webView) {
+    removeChildComponent(webView.get());  // ✅ remove from UI hierarchy
+    webView.reset();
+  }
+}
 
 void NeuralAmpEditor::paint(juce::Graphics& g) {
   // g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
