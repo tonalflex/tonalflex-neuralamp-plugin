@@ -662,9 +662,12 @@ void NeuralAmpProcessor::loadNamFile(const juce::String& filePath) {
 
       if (std::abs(modelRate - hostRate) > 1.0) {
         DBG("Resampling required: Model SR = " << modelRate << ", Host SR = " << hostRate);
+        std::cout << "Resampling required: Model SR = " << modelRate << ", Host SR = " << hostRate
+                  << std::endl;
         bypassResampling = false;
       } else {
         DBG("No resampling needed.");
+        std::cout << "No resampling needed." << std::endl;
         bypassResampling = true;
       }
 
@@ -678,6 +681,7 @@ void NeuralAmpProcessor::loadNamFile(const juce::String& filePath) {
 
       modelLoaded.store(true);
       DBG("Model loaded successfully: " << filePath);
+      std::cout << "Model loaded successfully: " << filePath << std::endl;
     } else {
       {
         std::lock_guard<std::mutex> lock(dspMutex);
@@ -688,6 +692,7 @@ void NeuralAmpProcessor::loadNamFile(const juce::String& filePath) {
     }
   } catch (const std::exception& e) {
     DBG("Error loading model: " << e.what());
+    std::cout << "Error loading model: " << e.what() << std::endl;
     modelLoaded.store(false);
   }
 }
@@ -740,8 +745,10 @@ void NeuralAmpProcessor::loadIrFile(const juce::String& filePath) {
 
     irLoaded = true;
     DBG("IR loaded successfully");
+    std::cout << "IR loaded successfully" << std::endl;
   } catch (const std::exception& e) {
     DBG("Error loading IR: " << e.what());
+    std::cout << "Error loading IR: " << e.what() << std::endl;
     irLoaded = false;
   }
 }
@@ -767,8 +774,10 @@ void NamLoaderThread::run() {
     }
 
     DBG("[Thread] Loading NAM model: " << modelToLoad);
+    std::cout << "[Thread] Loading NAM model: " << modelToLoad << std::endl;
     this->processor.loadNamFile(modelToLoad);
     DBG("[Thread] NAM Model load complete");
+    std::cout << "[Thread] NAM Model load complete" << std::endl;
   }
 }
 
@@ -789,7 +798,9 @@ void IrLoaderThread::run() {
     }
 
     DBG("[Thread] Loading IR model: " << modelToLoad);
+    std::cout << "[Thread] Loading IR model: " << modelToLoad << std::endl;
     this->processor.loadIrFile(modelToLoad);
     DBG("[Thread] IR Model load complete");
+    std::cout << "[Thread] IR Model load complete" << std::endl;
   }
 }

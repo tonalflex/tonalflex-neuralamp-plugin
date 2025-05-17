@@ -107,8 +107,8 @@ public:
 
 private:
   // Path to NAM and IR folder
-  static constexpr const char* NamFolder = "/home/rekz/Documents/NAM";
-  static constexpr const char* IrFolder = "/home/rekz/Documents/IR";
+  static constexpr const char* NamFolder = "/home/mind/NAM";
+  static constexpr const char* IrFolder = "/home/mind/IR";
 
   juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
