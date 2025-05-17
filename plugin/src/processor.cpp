@@ -471,62 +471,27 @@ void NeuralAmpProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Mi
 
   if (modelLoaded.load() && localDsp) {
     try {
-      std::vector<double>* inputData = nullptr;
-      std::vector<double>* outputData = nullptr;
-      size_t inputFrames = static_cast<size_t>(numSamples);
-
-      // Prepare input
-      for (size_t i = 0; i < inputFrames; ++i) {
+      // Process directly at DAW's sample rate
+      std::vector<double> input(static_cast<size_t>(numSamples));
+      for (size_t i = 0; i < static_cast<size_t>(numSamples); ++i) {
         float l = buffer.getSample(0, static_cast<int>(i));
         float r = (numChannels > 1) ? buffer.getSample(1, static_cast<int>(i)) : l;
-        resampleInputBuffer[i] = 0.5f * (l + r);
+        input[i] = 0.5 * (l + r);
       }
 
-      // Resample if needed
-      if (!bypassResampling) {
-        const double ratio = modelSampleRate / getSampleRate();
-        const int upsampled = upsampler.process(ratio, resampleInputBuffer.data(),
-                                                resampleInputBuffer.data(), numSamples);
-        inputData = new std::vector<double>(upsampled);
-        for (int i = 0; i < upsampled; ++i)
-          (*inputData)[i] = resampleInputBuffer[i];
-        outputData = new std::vector<double>(upsampled);
-      } else {
-        inputData = new std::vector<double>(inputFrames);
-        outputData = new std::vector<double>(inputFrames);
-        for (size_t i = 0; i < inputFrames; ++i)
-          (*inputData)[i] = resampleInputBuffer[i];
+      std::vector<double> output(static_cast<size_t>(numSamples));
+      localDsp->process(input.data(), output.data(), static_cast<size_t>(numSamples));
+
+      for (size_t i = 0; i < static_cast<size_t>(numSamples); ++i) {
+        float s = static_cast<float>(output[i]);
+        buffer.setSample(0, static_cast<int>(i), s);
+        if (numChannels > 1)
+          buffer.setSample(1, static_cast<int>(i), s);
       }
-
-      // Process
-      localDsp->process(inputData->data(), outputData->data(), outputData->size());
-
-      // Downsample if needed
-      if (!bypassResampling) {
-        const double ratio = getSampleRate() / modelSampleRate;
-        const int downsampled =
-            downsampler.process(ratio, reinterpret_cast<const float*>(outputData->data()),
-                                resampleOutputBuffer.data(), outputData->size());
-        for (int i = 0; i < downsampled; ++i) {
-          float s = resampleOutputBuffer[i];
-          buffer.setSample(0, i, s);
-          if (numChannels > 1)
-            buffer.setSample(1, i, s);
-        }
-      } else {
-        for (int i = 0; i < numSamples; ++i) {
-          float s = static_cast<float>((*outputData)[i]);
-          buffer.setSample(0, i, s);
-          if (numChannels > 1)
-            buffer.setSample(1, i, s);
-        }
-      }
-
-      delete inputData;
-      delete outputData;
     } catch (const std::exception& e) {
       DBG("Error in DSP processing: " << e.what());
       buffer.clear();
+      return;
     }
   }
 
@@ -652,36 +617,16 @@ void NeuralAmpProcessor::loadNamFile(const juce::String& filePath) {
   }
 
   DBG("Loading NAM model from: " << filePath);
-
   try {
     std::unique_ptr<nam::DSP> rawDsp = nam::get_dsp(filePath.toStdString());
-
     if (rawDsp) {
-      const double modelRate = rawDsp->GetExpectedSampleRate();
-      const double hostRate = getSampleRate();
-
-      if (std::abs(modelRate - hostRate) > 1.0) {
-        DBG("Resampling required: Model SR = " << modelRate << ", Host SR = " << hostRate);
-        std::cout << "Resampling required: Model SR = " << modelRate << ", Host SR = " << hostRate
-                  << std::endl;
-        bypassResampling = false;
-      } else {
-        DBG("No resampling needed.");
-        std::cout << "No resampling needed." << std::endl;
-        bypassResampling = true;
-      }
-
-      modelSampleRate = modelRate;
       rawDsp->Reset(modelSampleRate, getBlockSize());
-
       {
         std::lock_guard<std::mutex> lock(dspMutex);
         dsp = std::move(rawDsp);
       }
-
       modelLoaded.store(true);
       DBG("Model loaded successfully: " << filePath);
-      std::cout << "Model loaded successfully: " << filePath << std::endl;
     } else {
       {
         std::lock_guard<std::mutex> lock(dspMutex);
@@ -692,7 +637,6 @@ void NeuralAmpProcessor::loadNamFile(const juce::String& filePath) {
     }
   } catch (const std::exception& e) {
     DBG("Error loading model: " << e.what());
-    std::cout << "Error loading model: " << e.what() << std::endl;
     modelLoaded.store(false);
   }
 }
